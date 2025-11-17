@@ -95,11 +95,11 @@
   }
   
   .festival-icon {
-    @apply w-8 h-8 text-saffron-600 transition-transform duration-200 hover:scale-110;
+    @apply w-8 h-8 text-emerald-600 transition-transform duration-200 hover:scale-110;
   }
   
   .mantra-text {
-    @apply font-marathi text-lg leading-relaxed text-saffron-700;
+    @apply font-marathi text-lg leading-relaxed text-emerald-700;
   }
   
   /* Vibrant Indian Festival Decorations */
@@ -221,11 +221,11 @@
   
   /* Festival card styles */
   .festival-card {
-    @apply bg-white/80 backdrop-blur-sm border border-saffron-100 rounded-xl overflow-hidden;
+    @apply bg-white/80 backdrop-blur-sm border border-sage-200 rounded-xl overflow-hidden;
   }
   
   .festival-card:hover {
-    @apply bg-white/90 shadow-lg;
+    @apply bg-white/90 shadow-lg border-emerald-300;
   }
 
   /* Paisley and Mandala Background Patterns */
@@ -242,7 +242,7 @@
 
   /* Gradient text effects */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-saffron-500 via-rose-500 to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 via-sage-500 to-mint-500;
   }
 
   /* Glassmorphism effects */
@@ -326,11 +326,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-saffron-400 to-rose-400 rounded-full;
+    @apply bg-gradient-to-b from-emerald-400 to-sage-400 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-saffron-500 to-rose-500;
+    @apply from-emerald-500 to-sage-500;
   }
 
   /* Mobile optimizations */
@@ -361,6 +361,6 @@
 
   /* Focus visible for accessibility */
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-saffron-500 rounded;
+    @apply outline-2 outline-offset-2 outline-emerald-500 rounded;
   }
 }

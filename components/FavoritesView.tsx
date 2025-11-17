@@ -6,6 +6,7 @@ import { Heart, Calendar, ChefHat } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import FestivalDetail from './FestivalDetail'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
+import japaneseFestivalsData from '@/data/japanese-festivals.json'
 
 interface Festival {
   id: string
@@ -25,13 +26,17 @@ interface Festival {
 
 interface FavoritesViewProps {
   favorites: Set<string>
-  onToggleFavorite: (id: string) => void
+  onToggleFavorite: (festivalId: string) => void
+  country?: 'india' | 'japan'
 }
 
-export default function FavoritesView({ favorites, onToggleFavorite }: FavoritesViewProps) {
+export default function FavoritesView({ favorites, onToggleFavorite, country = 'india' }: FavoritesViewProps) {
   const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null)
   
-  const festivals = comprehensiveFestivalsData as Festival[]
+  // Load festivals based on selected country
+  const festivals = (country === 'japan' 
+    ? japaneseFestivalsData
+    : comprehensiveFestivalsData) as Festival[]
   const favoriteFestivals = festivals.filter(f => favorites.has(f.id))
 
   if (favoriteFestivals.length === 0) {
@@ -51,7 +56,7 @@ export default function FavoritesView({ favorites, onToggleFavorite }: Favorites
         >
           ❤️
         </motion.div>
-        <h2 className="text-3xl font-bold text-saffron-800 mb-4 font-marathi">
+        <h2 className="text-3xl font-bold text-emerald-800 mb-4 font-marathi">
           No Favorites Yet
         </h2>
         <p className="text-gray-600 mb-2 max-w-md">
@@ -71,7 +76,7 @@ export default function FavoritesView({ favorites, onToggleFavorite }: Favorites
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <h2 className="text-3xl font-bold text-saffron-800 mb-2 font-marathi">
+        <h2 className="text-3xl font-bold text-emerald-800 mb-2 font-marathi">
           Your Favorite Festivals
         </h2>
         <p className="text-gray-600">
@@ -90,7 +95,7 @@ export default function FavoritesView({ favorites, onToggleFavorite }: Favorites
             className="cursor-pointer"
             onClick={() => setSelectedFestival(festival)}
           >
-            <Card className="overflow-hidden border-saffron-100 hover:shadow-xl transition-all">
+            <Card className="overflow-hidden border-sage-200 hover:shadow-xl transition-all hover:border-emerald-300">
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={festival.heroImage} 
