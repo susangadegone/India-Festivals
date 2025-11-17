@@ -1,12 +1,14 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Search, Filter, Heart, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import FestivalDetail from './FestivalDetail'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
+import japaneseFestivalsData from '@/data/japanese-festivals.json'
+import type { Country } from '@/lib/countries'
 
 interface Festival {
   id: string
@@ -31,7 +33,11 @@ interface Festival {
   month?: string
 }
 
-export default function EnhancedCalendarView() {
+interface EnhancedCalendarViewProps {
+  country?: Country
+}
+
+export default function EnhancedCalendarView({ country = 'india' }: EnhancedCalendarViewProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
@@ -40,7 +46,13 @@ export default function EnhancedCalendarView() {
   const [filterRegion, setFilterRegion] = useState<string>('all')
   const [showFilters, setShowFilters] = useState(false)
 
-  const festivals = comprehensiveFestivalsData as Festival[]
+  // Load festivals based on selected country
+  const festivals = useMemo(() => {
+    if (country === 'japan') {
+      return japaneseFestivalsData as Festival[]
+    }
+    return comprehensiveFestivalsData as Festival[]
+  }, [country])
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -48,7 +60,10 @@ export default function EnhancedCalendarView() {
   ]
 
   const categories = ['all', 'religious', 'cultural', 'harvest', 'national']
-  const regions = ['all', 'Marathi', 'Hindi', 'Pan-Indian']
+  // Regions depend on country
+  const regions = country === 'japan' 
+    ? ['all', 'Japanese'] 
+    : ['all', 'Marathi', 'Hindi', 'Pan-Indian']
 
   const toggleFavorite = (festivalId: string) => {
     const newFavorites = new Set(favorites)

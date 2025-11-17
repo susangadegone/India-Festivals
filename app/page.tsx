@@ -7,15 +7,17 @@ import EnhancedCalendarView from '@/components/EnhancedCalendarView'
 import FavoritesView from '@/components/FavoritesView'
 import HindiFestivals from '@/components/HindiFestivals'
 import MarathiFestivals from '@/components/MarathiFestivals'
-import HinduFestivals from '@/components/HinduFestivals'
 import Profile from '@/components/Profile'
-import { Calendar, Heart, Home, User, Sparkles } from 'lucide-react'
+import { Calendar, Heart, Home, User, Sparkles, Globe, ChevronDown } from 'lucide-react'
+import { countries, type Country, getCountryConfig } from '@/lib/countries'
 
 export default function HomePage() {
   const [showLanding, setShowLanding] = useState(true)
   const [activeTab, setActiveTab] = useState('calendar')
   const [isLoaded, setIsLoaded] = useState(false)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
+  const [selectedCountry, setSelectedCountry] = useState<Country>('india')
+  const [showCountryMenu, setShowCountryMenu] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,11 +31,11 @@ export default function HomePage() {
   }
 
   const tabs = [
-    { id: 'calendar', label: 'Calendar', icon: Calendar, color: 'text-saffron-600' },
-    { id: 'favorites', label: 'Favorites', icon: Heart, color: 'text-rose-600' },
-    { id: 'hindi', label: 'Hindi', icon: Sparkles, color: 'text-orange-600' },
-    { id: 'marathi', label: 'Marathi', icon: Home, color: 'text-teal-600' },
-    { id: 'profile', label: 'Profile', icon: User, color: 'text-gold-600' },
+    { id: 'calendar', label: 'Calendar', icon: Calendar },
+    { id: 'favorites', label: 'Favorites', icon: Heart },
+    { id: 'hindi', label: 'Hindi', icon: Sparkles },
+    { id: 'marathi', label: 'Marathi', icon: Home },
+    { id: 'profile', label: 'Profile', icon: User },
   ]
 
   const toggleFavorite = (festivalId: string) => {
@@ -49,9 +51,9 @@ export default function HomePage() {
   const renderContent = () => {
     switch (activeTab) {
       case 'calendar':
-        return <EnhancedCalendarView />
+        return <EnhancedCalendarView country={selectedCountry} />
       case 'favorites':
-        return <FavoritesView favorites={favorites} onToggleFavorite={toggleFavorite} />
+        return <FavoritesView favorites={favorites} onToggleFavorite={toggleFavorite} country={selectedCountry} />
       case 'hindi':
         return <HindiFestivals />
       case 'marathi':
@@ -59,20 +61,11 @@ export default function HomePage() {
       case 'profile':
         return <Profile />
       default:
-        return <EnhancedCalendarView />
+        return <EnhancedCalendarView country={selectedCountry} />
     }
   }
 
-  const getTabIcon = (tabId: string) => {
-    switch (tabId) {
-      case 'calendar': return '📅'
-      case 'favorites': return '❤️'
-      case 'hindi': return '🕉️'
-      case 'marathi': return '🪔'
-      case 'profile': return '👤'
-      default: return '📅'
-    }
-  }
+  const currentCountry = getCountryConfig(selectedCountry)
 
   // Show landing page on first visit
   if (showLanding && isLoaded) {
@@ -80,89 +73,110 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50 app-container relative">
-      {/* Decorative Pattern Overlay */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle at 20% 50%, transparent 20%, rgba(234, 88, 12, 0.3) 21%, transparent 22%),
-                         radial-gradient(circle at 80% 80%, transparent 20%, rgba(220, 38, 38, 0.3) 21%, transparent 22%)`
-      }} />
-
-      {/* Festive Header */}
+    <div className="min-h-screen bg-sage-50 app-container relative">
+      {/* Clean, Minimal Header - Blogzan Style */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b-4 border-orange-200 shadow-lg"
+        className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-sage-200/50 shadow-sm"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo/Brand */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="flex items-center gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center gap-3"
             >
-              <motion.div 
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="w-14 h-14 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-xl"
-              >
-                <span className="text-2xl">🪔</span>
-              </motion.div>
+              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-sage-600 rounded-lg flex items-center justify-center">
+                <span className="text-xl">📅</span>
+              </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
-                  India Festival Calendar
-                </h1>
-                <p className="text-sm text-orange-700 font-marathi">हिंदी और मराठी त्योहार • Hindi and Marathi</p>
+                <h1 className="text-xl font-semibold text-gray-900">Festival Calendar</h1>
+                <p className="text-xs text-gray-500">Cultural Celebrations</p>
               </div>
             </motion.div>
             
-            <div className="hidden md:flex items-center gap-3">
-              <div className="flex gap-3 text-3xl">
-                <motion.span 
-                  animate={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, -5, 0]
-                  }} 
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="filter drop-shadow-lg"
-                >
-                  🪔
-                </motion.span>
-                <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 4, repeat: Infinity }}>🌺</motion.span>
-                <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}>✨</motion.span>
-              </div>
+            {/* Country Selector */}
+            <div className="relative">
+              <motion.button
+                onClick={() => setShowCountryMenu(!showCountryMenu)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sage-50 hover:bg-sage-100 border border-sage-200 transition-colors"
+              >
+                <Globe className="w-4 h-4 text-emerald-600" />
+                <span className="text-sm font-medium text-gray-700">{currentCountry.flag} {currentCountry.name}</span>
+                <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showCountryMenu ? 'rotate-180' : ''}`} />
+              </motion.button>
+
+              {/* Country Dropdown */}
+              <AnimatePresence>
+                {showCountryMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-sage-200 overflow-hidden"
+                  >
+                    {countries.map((country) => (
+                      <button
+                        key={country.id}
+                        onClick={() => {
+                          setSelectedCountry(country.id)
+                          setShowCountryMenu(false)
+                        }}
+                        className={`w-full px-4 py-3 text-left hover:bg-sage-50 transition-colors flex items-center gap-3 ${
+                          selectedCountry === country.id ? 'bg-sage-50 border-l-2 border-emerald-500' : ''
+                        }`}
+                      >
+                        <span className="text-xl">{country.flag}</span>
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{country.name}</div>
+                          <div className="text-xs text-gray-500">{country.nativeName}</div>
+                        </div>
+                        {selectedCountry === country.id && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="ml-auto w-2 h-2 bg-emerald-500 rounded-full"
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
-        {/* Decorative Border */}
-        <div className="h-1 bg-gradient-to-r from-orange-400 via-red-400 to-pink-400" />
       </motion.header>
 
-      {/* Main Content */}
-      <main className="app-content container mx-auto px-4 py-4">
+      {/* Main Content - Blog Style Layout */}
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-8">
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
+            key={`${activeTab}-${selectedCountry}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="min-h-[calc(100vh-140px)]"
+            className="min-h-[calc(100vh-200px)]"
           >
             {renderContent()}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Festive Bottom Navigation */}
+      {/* Minimal Bottom Navigation */}
       <motion.nav 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t-4 border-orange-200 shadow-2xl"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t border-sage-200/50 shadow-lg"
       >
-        <div className="h-1 bg-gradient-to-r from-orange-400 via-red-400 to-pink-400" />
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex justify-around items-center h-20">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          <div className="flex justify-around items-center h-16">
             {tabs.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.id
@@ -173,21 +187,21 @@ export default function HomePage() {
                   onClick={() => setActiveTab(tab.id)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative flex flex-col items-center justify-center py-2 px-4 rounded-2xl transition-all duration-200"
+                  className="relative flex flex-col items-center justify-center py-2 px-4 rounded-lg transition-all duration-200"
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-orange-100 via-yellow-100 to-red-100 rounded-2xl border-2 border-orange-300"
+                      className="absolute inset-0 bg-emerald-50 rounded-lg"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
                   <div className="relative z-10">
-                    <Icon className={`w-6 h-6 mb-1 transition-colors ${
-                      isActive ? 'text-orange-600' : 'text-gray-400'
+                    <Icon className={`w-5 h-5 mb-1 transition-colors ${
+                      isActive ? 'text-emerald-600' : 'text-gray-400'
                     }`} />
-                    <span className={`text-xs font-semibold ${
-                      isActive ? 'text-orange-700' : 'text-gray-500'
+                    <span className={`text-xs font-medium ${
+                      isActive ? 'text-emerald-700' : 'text-gray-500'
                     }`}>
                       {tab.label}
                     </span>
@@ -196,10 +210,8 @@ export default function HomePage() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute -top-1 right-2 text-xs"
-                    >
-                      ✨
-                    </motion.div>
+                      className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-emerald-500 rounded-full"
+                    />
                   )}
                 </motion.button>
               )
@@ -207,6 +219,14 @@ export default function HomePage() {
           </div>
         </div>
       </motion.nav>
+
+      {/* Click outside to close country menu */}
+      {showCountryMenu && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setShowCountryMenu(false)}
+        />
+      )}
     </div>
   )
 }

@@ -7,7 +7,7 @@
     "category": "harvest",
     "color": "#F97316",
     "tagline": "Celebrating the harvest with bonfire, folk songs and traditional joy",
-    "heroImage": "https://images.unsplash.com/photo-1610878785620-b1d0c5d3b4e5?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1610878785620-b1d0c5d3b4e5?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Lohri is a popular winter harvest festival celebrated with great enthusiasm in Punjab and North India, marking the end of winter solstice.",
       "history": "The festival is associated with the legend of Dulla Bhatti, a hero who rescued Hindu girls from being forcibly taken to slave market of the Middle East. The bonfire is lit to bid farewell to winter.",
@@ -195,7 +195,7 @@
     "category": "harvest",
     "color": "#FFC107",
     "tagline": "Harvest festival celebrating the sun's journey north",
-    "heroImage": "https://images.unsplash.com/photo-1548199624-cd6e8dc3b1bc?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Makar Sankranti celebrates the sun's transition into Capricorn (Makar), marking the end of winter and beginning of longer days. It's a joyous harvest festival.",
       "history": "One of the few Hindu festivals based on the solar calendar. It has been celebrated for thousands of years to thank the sun god and celebrate the harvest.",
@@ -395,6 +395,143 @@
     "month": "January"
   },
   {
+    "id": "pongal",
+    "name": "Pongal",
+    "nameDevanagari": "पोंगल",
+    "date": "2026-01-15",
+    "date_2025": "2025-01-15",
+    "date_2026": "2026-01-15",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "Tamil Nadu",
+      "Puducherry"
+    ],
+    "date_type": "Solar",
+    "importance": "Very High",
+    "category": "harvest",
+    "month": "January",
+    "color": "#FF6B35",
+    "tagline": "Tamil harvest festival with sweet rice and cattle worship",
+    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Pongal is Tamil Nadu's harvest festival, celebrated over four days with sweet rice offerings and cattle worship.",
+      "history": "Pongal means \"boiling over\" and celebrates the harvest season. It's a four-day festival starting with Bhogi, followed by Thai Pongal, Mattu Pongal, and Kaanum Pongal.",
+      "significance": "The festival celebrates the harvest and thanks nature for the bountiful crops. The main day involves cooking sweet rice (Ven Pongal) in new pots until it overflows.",
+      "duration": "4 days",
+      "region": "Tamil Nadu"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Decorate with Kolam",
+        "description": "Create beautiful rangoli designs (Kolam) at your entrance using rice flour or colored powders.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Cook Pongal",
+        "description": "Cook sweet Pongal in a new pot until it boils over, symbolizing prosperity.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 3,
+        "title": "Offer to Sun God",
+        "description": "Offer the cooked Pongal to Sun God and pray for prosperity.",
+        "timeNeeded": "30 minutes",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "ven-pongal",
+        "name": "Ven Pongal",
+        "nameDevanagari": "वेन पोंगल",
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80",
+        "description": "Sweet rice and lentil dish, traditional for Pongal",
+        "difficulty": "Easy",
+        "prepTime": "15 min",
+        "cookTime": "30 min",
+        "servings": "6 servings",
+        "ingredients": [
+          "1 cup rice",
+          "1/2 cup moong dal",
+          "1/2 cup jaggery",
+          "2 tbsp ghee",
+          "Cardamom powder",
+          "Cashews and raisins",
+          "Water"
+        ],
+        "instructions": [
+          "Roast dal until golden",
+          "Wash rice and dal together",
+          "Cook with water until soft",
+          "Melt jaggery with water",
+          "Add jaggery syrup to rice",
+          "Add ghee, cardamom, and nuts",
+          "Cook until thick"
+        ],
+        "tips": [
+          "Rice should be mushy",
+          "Can be made sweet or savory",
+          "Serve hot"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Kolam Decoration",
+        "description": "Create beautiful Kolam designs for Pongal.",
+        "materials": [
+          "Rice flour",
+          "Colored powders",
+          "Flower petals"
+        ],
+        "difficulty": "Medium",
+        "timeNeeded": "1 hour",
+        "steps": [
+          "Draw design outline",
+          "Fill with rice flour",
+          "Add colors",
+          "Decorate with flowers"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Start with simple patterns",
+          "Use stencils",
+          "Practice on paper"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Sun God idol",
+        "New pot",
+        "Flowers",
+        "Incense"
+      ],
+      "lighting": [
+        "Diyas",
+        "Candles"
+      ],
+      "decoration": [
+        "Rice flour",
+        "Colored powders",
+        "Flowers"
+      ],
+      "cooking": [
+        "Pongal ingredients",
+        "New pot",
+        "Ghee",
+        "Nuts"
+      ]
+    }
+  },
+  {
     "id": "republic-day",
     "name": "Republic Day",
     "nameDevanagari": "गणतंत्र दिवस",
@@ -411,7 +548,7 @@
     "month": "January",
     "color": "#3B82F6",
     "tagline": "Celebrating Republic Day",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Republic Day is an important festival celebrated across All States.",
       "history": "The festival of Republic Day has deep cultural and religious significance.",
@@ -528,7 +665,7 @@
     "category": "religious",
     "color": "#EAB308",
     "tagline": "Welcoming spring and worshipping Goddess Saraswati",
-    "heroImage": "https://images.unsplash.com/photo-1610878787564-e3cdb6b2bef3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Vasant Panchami marks the beginning of spring and is dedicated to Goddess Saraswati, the deity of knowledge, music and arts.",
       "history": "The festival celebrates the day when Goddess Saraswati was born. It's also the day when Lord Brahma created the universe. Yellow color dominates the celebration as it represents mustard fields in bloom.",
@@ -720,7 +857,7 @@
     "month": "February",
     "color": "#FF6B35",
     "tagline": "Celebrating Shiv Jayanti",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Shiv Jayanti is an important festival celebrated across Maharashtra.",
       "history": "The festival of Shiv Jayanti has deep cultural and religious significance.",
@@ -837,7 +974,7 @@
     "category": "religious",
     "color": "#9C27B0",
     "tagline": "The great night of Lord Shiva - awakening and enlightenment",
-    "heroImage": "https://images.unsplash.com/photo-1603693872407-147f6f8c24bc?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Maha Shivratri is the great night dedicated to Lord Shiva. Devotees fast, meditate, and perform special pujas to seek blessings from the destroyer and transformer in the Hindu trinity.",
       "history": "According to legend, this is the night when Lord Shiva performed the cosmic dance of creation, preservation, and destruction. It's also believed to be the night of Shiva and Parvati's marriage.",
@@ -1080,7 +1217,7 @@
     "category": "religious",
     "color": "#FF1744",
     "tagline": "The Festival of Colors celebrating love, joy, and new beginnings",
-    "heroImage": "https://images.unsplash.com/photo-1615796153287-98eacf0b94cf?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Holi celebrates the arrival of spring and the victory of good over evil. It's a festival of colors where people play with gulal (colored powder) and water.",
       "history": "Holi's origins trace back to ancient Hindu texts. The festival commemorates the burning of Holika and celebrates the divine love of Radha and Krishna.",
@@ -1420,7 +1557,7 @@
     "month": "March",
     "color": "#10B981",
     "tagline": "Celebrating Lathmar Holi",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1615796153287-98eacf0b94cf?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Lathmar Holi is an important festival celebrated across Uttar Pradesh.",
       "history": "The festival of Lathmar Holi has deep cultural and religious significance.",
@@ -1537,7 +1674,7 @@
     "category": "cultural",
     "color": "#4CAF50",
     "tagline": "Maharashtra's New Year - New beginnings and prosperity",
-    "heroImage": "https://images.unsplash.com/photo-1618588507085-c79565432917?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Gudi Padwa marks the Marathi New Year and the arrival of spring. It's celebrated with traditional flags (gudi), new clothes, and special foods.",
       "history": "The festival commemorates the coronation of Lord Rama and the victories of Chhatrapati Shivaji Maharaj. The gudi represents victory and prosperity.",
@@ -1796,7 +1933,7 @@
     "month": "March",
     "color": "#3B82F6",
     "tagline": "Celebrating Eid ul-Fitr",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Eid ul-Fitr is an important festival celebrated across All States.",
       "history": "The festival of Eid ul-Fitr has deep cultural and religious significance.",
@@ -1913,7 +2050,7 @@
     "category": "religious",
     "color": "#FF5722",
     "tagline": "Celebrating the birth of Lord Rama, the ideal king and avatar",
-    "heroImage": "https://images.unsplash.com/photo-1615791924037-7977d6c239be?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Ram Navami celebrates the birth of Lord Rama, the seventh avatar of Vishnu and the hero of the epic Ramayana. It marks the victory of dharma and righteousness.",
       "history": "Lord Rama was born in Ayodhya to King Dasharatha and Queen Kausalya. His life story, chronicled in the Ramayana, represents the triumph of good over evil and the importance of upholding dharma.",
@@ -2161,7 +2298,7 @@
     "month": "April",
     "color": "#3B82F6",
     "tagline": "Celebrating Mahavir Jayanti",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Mahavir Jayanti is an important festival celebrated across All States.",
       "history": "The festival of Mahavir Jayanti has deep cultural and religious significance.",
@@ -2271,6 +2408,137 @@
     }
   },
   {
+    "id": "bihu",
+    "name": "Bihu",
+    "nameDevanagari": "बिहू",
+    "date": "2026-04-14",
+    "date_2025": "2025-04-14",
+    "date_2026": "2026-04-14",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "Assam"
+    ],
+    "date_type": "Solar",
+    "importance": "Very High",
+    "category": "harvest",
+    "month": "April",
+    "color": "#10B981",
+    "tagline": "Assam's vibrant harvest festival with Bihu dance and traditional foods",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Bihu is Assam's most important festival, celebrated three times a year marking different agricultural cycles.",
+      "history": "Bihu is celebrated three times: Rongali Bihu (spring), Kongali Bihu (autumn), and Bhogali Bihu (winter). The spring festival is the most elaborate with Bihu dances and traditional foods.",
+      "significance": "Bihu celebrates agriculture and marks the beginning of the Assamese New Year. It's characterized by Bihu dances, traditional Assamese foods, and community celebrations.",
+      "duration": "7 days",
+      "region": "Assam"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Prepare Traditional Foods",
+        "description": "Prepare traditional Assamese dishes like pitha, laru, and jolpan.",
+        "timeNeeded": "3-4 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 2,
+        "title": "Perform Bihu Dance",
+        "description": "Learn and perform the traditional Bihu dance with community members.",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 3,
+        "title": "Exchange Gamosas",
+        "description": "Exchange traditional Assamese towels (Gamosa) as gifts with family and friends.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "til-pitha",
+        "name": "Til Pitha",
+        "nameDevanagari": "तिल पिठा",
+        "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
+        "description": "Traditional Assamese rice cake with sesame and jaggery",
+        "difficulty": "Medium",
+        "prepTime": "2 hours",
+        "cookTime": "30 min",
+        "servings": "20 pieces",
+        "ingredients": [
+          "2 cups glutinous rice flour",
+          "1 cup jaggery",
+          "1/2 cup sesame seeds",
+          "1/2 cup grated coconut",
+          "Ghee for cooking"
+        ],
+        "instructions": [
+          "Soak rice overnight and grind to flour",
+          "Roast sesame seeds and grind",
+          "Melt jaggery with water",
+          "Mix jaggery, sesame, and coconut",
+          "Make rice flour dough",
+          "Shape with filling and cook on griddle",
+          "Cook until golden brown"
+        ],
+        "tips": [
+          "Rice should be properly soaked",
+          "Jaggery consistency is important",
+          "Serve hot"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Bihu Decoration",
+        "description": "Decorate home with traditional Assamese elements.",
+        "materials": [
+          "Gamosa",
+          "Flowers",
+          "Traditional items"
+        ],
+        "difficulty": "Easy",
+        "timeNeeded": "1 hour",
+        "steps": [
+          "Hang gamosas",
+          "Decorate with flowers",
+          "Arrange traditional items"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Use colorful gamosas",
+          "Add fresh flowers",
+          "Keep it simple"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Flowers",
+        "Incense",
+        "Traditional items"
+      ],
+      "lighting": [
+        "Diyas",
+        "Lights"
+      ],
+      "decoration": [
+        "Gamosa",
+        "Flowers",
+        "Traditional items"
+      ],
+      "cooking": [
+        "Pitha ingredients",
+        "Laru ingredients",
+        "Jolpan items"
+      ]
+    }
+  },
+  {
     "id": "good-friday",
     "name": "Good Friday",
     "nameDevanagari": "गुड फ्राइडे",
@@ -2287,7 +2555,7 @@
     "month": "April",
     "color": "#3B82F6",
     "tagline": "Celebrating Good Friday",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Good Friday is an important festival celebrated across All States.",
       "history": "The festival of Good Friday has deep cultural and religious significance.",
@@ -2413,7 +2681,7 @@
     "month": "May",
     "color": "#3B82F6",
     "tagline": "Celebrating Buddha Purnima",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Buddha Purnima is an important festival celebrated across All States.",
       "history": "The festival of Buddha Purnima has deep cultural and religious significance.",
@@ -2539,7 +2807,7 @@
     "month": "June",
     "color": "#3B82F6",
     "tagline": "Celebrating Eid ul-Adha",
-    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Eid ul-Adha is an important festival celebrated across All States.",
       "history": "The festival of Eid ul-Adha has deep cultural and religious significance.",
@@ -2666,7 +2934,7 @@
     "month": "June",
     "color": "#FF6B35",
     "tagline": "Celebrating Vat Pournima",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Vat Pournima is an important festival celebrated across Maharashtra, Goa.",
       "history": "The festival of Vat Pournima has deep cultural and religious significance.",
@@ -2792,7 +3060,7 @@
     "month": "July",
     "color": "#FF6B35",
     "tagline": "Celebrating Ashadhi Ekadashi",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Ashadhi Ekadashi is an important festival celebrated across Maharashtra.",
       "history": "The festival of Ashadhi Ekadashi has deep cultural and religious significance.",
@@ -2919,7 +3187,7 @@
     "month": "July",
     "color": "#10B981",
     "tagline": "Celebrating Shravani Mela",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Shravani Mela is an important festival celebrated across Bihar, Jharkhand.",
       "history": "The festival of Shravani Mela has deep cultural and religious significance.",
@@ -3046,7 +3314,7 @@
     "month": "July",
     "color": "#10B981",
     "tagline": "Celebrating Madhushravani",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Madhushravani is an important festival celebrated across Bihar, Jharkhand.",
       "history": "The festival of Madhushravani has deep cultural and religious significance.",
@@ -3174,7 +3442,7 @@
     "month": "July",
     "color": "#FF6B35",
     "tagline": "Celebrating Nag Panchami",
-    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Nag Panchami is an important festival celebrated across Maharashtra, Goa, Karnataka.",
       "history": "The festival of Nag Panchami has deep cultural and religious significance.",
@@ -3291,7 +3559,7 @@
     "category": "cultural",
     "color": "#E91E63",
     "tagline": "Celebrating the sacred bond between siblings",
-    "heroImage": "https://images.unsplash.com/photo-1627735718171-c4bc04e8f21d?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Raksha Bandhan celebrates the unique bond between brothers and sisters. Sisters tie a sacred thread (rakhi) on their brothers' wrists, symbolizing protection and love.",
       "history": "The festival has ancient roots in Indian mythology, with stories of Lord Krishna and Draupadi, and Queen Karnavati and Emperor Humayun. The rakhi represents a sister's prayer for her brother's well-being and the brother's promise to protect his sister.",
@@ -3522,7 +3790,7 @@
     "month": "August",
     "color": "#FF6B35",
     "tagline": "Celebrating Narali Pournima",
-    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1610878785620-b1d0c5d3b4e5?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Narali Pournima is an important festival celebrated across Maharashtra, Goa.",
       "history": "The festival of Narali Pournima has deep cultural and religious significance.",
@@ -3639,7 +3907,7 @@
     "category": "religious",
     "color": "#2196F3",
     "tagline": "Celebrating the birth of Lord Krishna with devotion and joy",
-    "heroImage": "https://images.unsplash.com/photo-1626527594138-7abb9aea2ae0?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1597151384215-3d6f1c2d9b5b?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Lord Vishnu. The festival is marked by fasting, prayers, and midnight celebrations.",
       "history": "Lord Krishna was born in Mathura over 5,000 years ago to Devaki and Vasudeva. His birth came at midnight in a prison cell, where he was born to destroy the evil King Kansa and protect dharma.",
@@ -3874,7 +4142,7 @@
     "month": "August",
     "color": "#3B82F6",
     "tagline": "Celebrating Independence Day",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Independence Day is an important festival celebrated across All States.",
       "history": "The festival of Independence Day has deep cultural and religious significance.",
@@ -4002,7 +4270,7 @@
     "month": "August",
     "color": "#10B981",
     "tagline": "Celebrating Teej",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Teej is an important festival celebrated across Rajasthan, Uttar Pradesh, Haryana.",
       "history": "The festival of Teej has deep cultural and religious significance.",
@@ -4128,7 +4396,7 @@
     "month": "August",
     "color": "#FF6B35",
     "tagline": "Celebrating Pola",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Pola is an important festival celebrated across Maharashtra.",
       "history": "The festival of Pola has deep cultural and religious significance.",
@@ -4254,7 +4522,7 @@
     "month": "August",
     "color": "#FF6B35",
     "tagline": "Celebrating Bail Pola",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Bail Pola is an important festival celebrated across Maharashtra.",
       "history": "The festival of Bail Pola has deep cultural and religious significance.",
@@ -4371,7 +4639,7 @@
     "category": "religious",
     "color": "#FF9800",
     "tagline": "Celebrating the birth of the remover of obstacles",
-    "heroImage": "https://images.unsplash.com/photo-1626527594138-7abb9aea2ae0?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Ganesh Chaturthi celebrates the birth of Lord Ganesha, the elephant-headed deity who removes obstacles and brings wisdom. It's one of Maharashtra's most beloved festivals.",
       "history": "The festival has been celebrated since the days of Chhatrapati Shivaji Maharaj, but gained prominence during the Indian freedom movement. Lokmanya Tilak transformed it into a public celebration to unite people.",
@@ -4587,6 +4855,138 @@
     "month": "August"
   },
   {
+    "id": "onam",
+    "name": "Onam",
+    "nameDevanagari": "ओणम",
+    "date": "2026-08-26",
+    "date_2025": "2025-09-04",
+    "date_2026": "2026-08-26",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "Kerala"
+    ],
+    "date_type": "Lunar",
+    "importance": "Very High",
+    "category": "cultural",
+    "month": "August",
+    "color": "#10B981",
+    "tagline": "Kerala's harvest festival with floral carpets and grand feasts",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Onam is Kerala's biggest festival, celebrated as a harvest festival and to welcome the mythical King Mahabali.",
+      "history": "Onam commemorates the return of the legendary King Mahabali to his kingdom. It's celebrated with elaborate floral carpets (Pookalam), boat races, and grand feasts (Onasadya).",
+      "significance": "Onam is a ten-day festival that marks the Malayalam New Year. It's celebrated with traditional dances, boat races, and the grand Onasadya feast served on banana leaves.",
+      "duration": "10 days",
+      "region": "Kerala"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Create Pookalam",
+        "description": "Create beautiful floral carpet designs (Pookalam) at your entrance using fresh flower petals.",
+        "timeNeeded": "1-2 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 2,
+        "title": "Prepare Onasadya",
+        "description": "Prepare the grand Onasadya feast with 26+ traditional dishes served on banana leaves.",
+        "timeNeeded": "4-6 hours",
+        "difficulty": "Hard"
+      },
+      {
+        "step": 3,
+        "title": "Watch Vallam Kali",
+        "description": "Watch or participate in traditional snake boat races (Vallam Kali).",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "onam-sadya",
+        "name": "Onasadya Feast",
+        "nameDevanagari": "ओणसद्य",
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80",
+        "description": "Grand feast with 26+ dishes served on banana leaf",
+        "difficulty": "Hard",
+        "prepTime": "6 hours",
+        "cookTime": "4 hours",
+        "servings": "10-12 people",
+        "ingredients": [
+          "Rice",
+          "Sambar vegetables",
+          "Avial vegetables",
+          "Thorans (stir-fries)",
+          "Pachadi",
+          "Pickles",
+          "Payasam (dessert)",
+          "And 20+ more dishes"
+        ],
+        "instructions": [
+          "Prepare all vegetables and ingredients",
+          "Cook rice in traditional way",
+          "Prepare each curry separately",
+          "Arrange on banana leaf in traditional order",
+          "Serve hot with all accompaniments"
+        ],
+        "tips": [
+          "Can be simplified with fewer dishes",
+          "Serve on banana leaf for authentic experience",
+          "Include at least one payasam (dessert)"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Floral",
+        "title": "Pookalam (Floral Carpet)",
+        "description": "Create beautiful floral carpet designs with fresh flowers.",
+        "materials": [
+          "Fresh flower petals",
+          "Banana leaves",
+          "Coconut leaves"
+        ],
+        "difficulty": "Medium",
+        "timeNeeded": "2 hours",
+        "steps": [
+          "Design pattern",
+          "Arrange flower petals",
+          "Add decorative elements"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Start with simple geometric patterns",
+          "Use colorful flowers",
+          "Practice on paper first"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Mahabali idol",
+        "Flowers",
+        "Incense"
+      ],
+      "lighting": [
+        "Diyas",
+        "Lights"
+      ],
+      "decoration": [
+        "Fresh flowers",
+        "Banana leaves",
+        "Coconut"
+      ],
+      "cooking": [
+        "Onasadya ingredients",
+        "Banana leaves",
+        "All vegetables"
+      ]
+    }
+  },
+  {
     "id": "navratri",
     "name": "Navratri",
     "nameDevanagari": "नवरात्री",
@@ -4594,7 +4994,7 @@
     "category": "religious",
     "color": "#E91E63",
     "tagline": "Nine nights of divine feminine worship and celebration",
-    "heroImage": "https://images.unsplash.com/photo-1601980871936-af830e266068?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Navratri celebrates the divine feminine in her nine forms over nine nights. It's a time of fasting, prayer, dance, and celebration across India.",
       "history": "Navratri celebrates the victory of Goddess Durga over the demon Mahishasura, symbolizing the triumph of good over evil. Different regions celebrate with their own unique traditions.",
@@ -4836,7 +5236,7 @@
     "month": "October",
     "color": "#3B82F6",
     "tagline": "Celebrating Gandhi Jayanti",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Gandhi Jayanti is an important festival celebrated across All States.",
       "history": "The festival of Gandhi Jayanti has deep cultural and religious significance.",
@@ -4946,6 +5346,421 @@
     }
   },
   {
+    "id": "durga-puja",
+    "name": "Durga Puja",
+    "nameDevanagari": "दुर्गा पूजा",
+    "date": "2025-10-05",
+    "date_2025": "2025-10-05",
+    "date_2026": "2026-09-25",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "West Bengal",
+      "Assam",
+      "Tripura",
+      "Odisha",
+      "Bihar"
+    ],
+    "date_type": "Lunar",
+    "importance": "Very High",
+    "category": "religious",
+    "month": "October",
+    "color": "#FF6B35",
+    "tagline": "Nine days of worshipping Goddess Durga",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Durga Puja is a major festival celebrating the victory of Goddess Durga over the demon Mahishasura.",
+      "history": "Durga Puja is celebrated for nine days during Navratri. It marks the victory of Goddess Durga over the buffalo demon Mahishasura, symbolizing the triumph of good over evil.",
+      "significance": "The festival celebrates the divine feminine power (Shakti) and the victory of good over evil. It's celebrated with elaborate pandals, idols, and cultural programs.",
+      "duration": "9 days",
+      "region": "Especially popular in West Bengal"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Visit Puja Pandals",
+        "description": "Visit beautifully decorated pandals with Durga idols and installations.",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Participate in Puja",
+        "description": "Participate in morning and evening puja rituals.",
+        "timeNeeded": "1-2 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 3,
+        "title": "Enjoy Cultural Programs",
+        "description": "Attend cultural programs, music, and dance performances.",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "khichuri",
+        "name": "Khichuri",
+        "nameDevanagari": "खिचड़ी",
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80",
+        "description": "Spiced rice and lentil dish, traditional for Durga Puja",
+        "difficulty": "Medium",
+        "prepTime": "15 min",
+        "cookTime": "30 min",
+        "servings": "4 servings",
+        "ingredients": [
+          "1 cup rice",
+          "1/2 cup yellow moong dal",
+          "Mixed vegetables",
+          "Spices (turmeric, cumin, bay leaf)",
+          "Ghee",
+          "Water"
+        ],
+        "instructions": [
+          "Soak rice and dal for 30 minutes",
+          "Heat ghee, add whole spices",
+          "Add vegetables and sauté",
+          "Add rice and dal, water",
+          "Cook until soft and mushy"
+        ],
+        "tips": [
+          "Should be mushy consistency",
+          "Serve with labra (mixed vegetables)",
+          "Traditional Bengali comfort food"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Pandal",
+        "title": "Durga Puja Pandal",
+        "description": "Elaborate decorations for Durga Puja celebrations.",
+        "materials": [
+          "Pandal structure",
+          "Durga idol",
+          "Lights",
+          "Flowers"
+        ],
+        "difficulty": "Hard",
+        "timeNeeded": "Days",
+        "steps": [
+          "Set up pandal",
+          "Install Durga idol",
+          "Decorate with lights",
+          "Add flowers"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Visit community pandals",
+          "Decorate home altar",
+          "Use smaller idols"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Durga idol",
+        "Incense",
+        "Flowers",
+        "Fruits"
+      ],
+      "lighting": [
+        "Diyas",
+        "Lights",
+        "Candles"
+      ],
+      "decoration": [
+        "Pandal materials",
+        "Flowers",
+        "Streamers"
+      ],
+      "cooking": [
+        "Khichuri ingredients",
+        "Labra vegetables",
+        "Sweets"
+      ]
+    }
+  },
+  {
+    "id": "dussehra",
+    "name": "Dussehra",
+    "nameDevanagari": "दशहरा",
+    "date": "2025-10-12",
+    "date_2025": "2025-10-12",
+    "date_2026": "2026-10-02",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "All States"
+    ],
+    "date_type": "Lunar",
+    "importance": "Very High",
+    "category": "religious",
+    "month": "October",
+    "color": "#FF6B35",
+    "tagline": "Victory of good over evil - burning of Ravana",
+    "heroImage": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Dussehra, also known as Vijayadashami, marks the victory of Lord Rama over Ravana, symbolizing the triumph of good over evil.",
+      "history": "Dussehra is celebrated on the 10th day of Navratri. It commemorates the victory of Lord Rama over the demon king Ravana. In some regions, it also celebrates the victory of Goddess Durga over Mahishasura.",
+      "significance": "Dussehra symbolizes the victory of righteousness over evil. It's celebrated with the burning of effigies of Ravana, Meghnath, and Kumbhakaran, and with dramatic enactments of Ramayana.",
+      "duration": "1 day",
+      "region": "Pan-India"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Watch Ramlila",
+        "description": "Attend or watch Ramlila performances, which dramatize the story of Ramayana leading up to Dussehra.",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Visit Ravana Effigy",
+        "description": "Visit a Dussehra fair where large effigies of Ravana, Meghnath, and Kumbhakaran are displayed.",
+        "timeNeeded": "1-2 hours",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 3,
+        "title": "Witness Burning Ceremony",
+        "description": "Witness the burning of Ravana effigy in the evening, symbolizing the victory of good over evil.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "dussehra-sweet",
+        "name": "Jalebi",
+        "nameDevanagari": "जलेबी",
+        "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
+        "description": "Sweet, crispy, spiral-shaped dessert soaked in sugar syrup",
+        "difficulty": "Hard",
+        "prepTime": "30 min",
+        "cookTime": "45 min",
+        "servings": "20 pieces",
+        "ingredients": [
+          "1 cup all-purpose flour",
+          "1/4 cup gram flour",
+          "1/2 cup yogurt",
+          "1/4 tsp baking soda",
+          "1 cup sugar",
+          "1/2 cup water",
+          "Saffron strands",
+          "Oil for frying"
+        ],
+        "instructions": [
+          "Mix flours, yogurt, and baking soda to make smooth batter",
+          "Let ferment for 12 hours or overnight",
+          "Make sugar syrup with saffron",
+          "Heat oil, pipe spiral shapes into hot oil",
+          "Fry until golden, dip in warm sugar syrup"
+        ],
+        "tips": [
+          "Batter consistency is crucial - should be smooth and flowing",
+          "Oil temperature should be medium-high",
+          "Serve hot for best taste"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Ravana Effigy Decoration",
+        "description": "Decorate your space with traditional Dussehra elements.",
+        "materials": [
+          "Ravana effigy",
+          "Diyas",
+          "Flowers",
+          "Rangoli"
+        ],
+        "difficulty": "Easy",
+        "timeNeeded": "1 hour",
+        "steps": [
+          "Set up Ravana effigy",
+          "Decorate with lights",
+          "Add rangoli"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Use small effigies for home",
+          "Decorate with lights",
+          "Add rangoli patterns"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Effigy",
+        "Diyas",
+        "Incense",
+        "Flowers"
+      ],
+      "lighting": [
+        "Diyas",
+        "Candles",
+        "Lights"
+      ],
+      "decoration": [
+        "Rangoli colors",
+        "Flowers",
+        "Streamers"
+      ],
+      "cooking": [
+        "Jalebi ingredients",
+        "Sweets",
+        "Snacks"
+      ]
+    }
+  },
+  {
+    "id": "dhanteras",
+    "name": "Dhanteras",
+    "nameDevanagari": "धनतेरस",
+    "date": "2025-10-18",
+    "date_2025": "2025-10-18",
+    "date_2026": "2026-11-06",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "All States"
+    ],
+    "date_type": "Lunar",
+    "importance": "High",
+    "category": "religious",
+    "month": "October",
+    "color": "#FF6B35",
+    "tagline": "Festival of wealth and prosperity - first day of Diwali",
+    "heroImage": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Dhanteras is the first day of the five-day Diwali festival, dedicated to Lord Dhanvantari and Goddess Lakshmi.",
+      "history": "Dhanteras marks the birth of Dhanvantari, the physician of the gods. It's believed that buying gold, silver, or utensils on this day brings prosperity.",
+      "significance": "Dhanteras is associated with wealth and prosperity. People buy gold, silver, utensils, or new items on this day. It's the first day of Diwali celebrations.",
+      "duration": "1 day",
+      "region": "Pan-India"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Buy Gold or Silver",
+        "description": "Purchase gold, silver, utensils, or new items as per tradition.",
+        "timeNeeded": "2-3 hours",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Clean and Decorate Home",
+        "description": "Thoroughly clean your home and decorate with rangoli and lights.",
+        "timeNeeded": "3-4 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 3,
+        "title": "Perform Lakshmi Puja",
+        "description": "Perform Lakshmi puja in the evening with offerings of sweets and flowers.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 4,
+        "title": "Light Diyas",
+        "description": "Light 13 diyas (oil lamps) and place them at different locations in your home.",
+        "timeNeeded": "30 minutes",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "kheer-dhanteras",
+        "name": "Rice Kheer",
+        "nameDevanagari": "खीर",
+        "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
+        "description": "Creamy rice pudding, traditional for Dhanteras",
+        "difficulty": "Easy",
+        "prepTime": "10 min",
+        "cookTime": "30 min",
+        "servings": "6 servings",
+        "ingredients": [
+          "1/2 cup basmati rice",
+          "1 liter full cream milk",
+          "1/2 cup sugar",
+          "1/4 tsp cardamom powder",
+          "Saffron strands",
+          "Nuts and raisins"
+        ],
+        "instructions": [
+          "Wash and soak rice for 30 minutes",
+          "Boil milk and add rice",
+          "Cook on low heat until rice is soft",
+          "Add sugar and cardamom",
+          "Garnish with nuts and saffron"
+        ],
+        "tips": [
+          "Cook on low heat for creamy texture",
+          "Stir frequently to avoid sticking",
+          "Serve hot or cold"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Dhanteras Decoration",
+        "description": "Decorate home with rangoli and lights for Dhanteras.",
+        "materials": [
+          "Rangoli colors",
+          "Diyas",
+          "Flowers",
+          "Lights"
+        ],
+        "difficulty": "Easy",
+        "timeNeeded": "2 hours",
+        "steps": [
+          "Draw rangoli at entrance",
+          "Place diyas",
+          "Decorate with flowers",
+          "Add lights"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Use rangoli stencils",
+          "Place diyas in decorative patterns",
+          "Use LED lights for safety"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Lakshmi idol",
+        "Gold/silver items",
+        "Utensils",
+        "Incense"
+      ],
+      "lighting": [
+        "13 diyas",
+        "Oil",
+        "Wicks",
+        "Candles"
+      ],
+      "decoration": [
+        "Rangoli colors",
+        "Flowers",
+        "Torans"
+      ],
+      "cooking": [
+        "Kheer ingredients",
+        "Sweets",
+        "Dry fruits"
+      ]
+    }
+  },
+  {
     "id": "diwali",
     "name": "Diwali",
     "nameDevanagari": "दिवाळी",
@@ -4953,7 +5768,7 @@
     "category": "religious",
     "color": "#FF6B35",
     "tagline": "The Festival of Lights illuminating hearts and homes",
-    "heroImage": "https://images.unsplash.com/photo-1609267684823-5c4c6f82a2b3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Diwali, the Festival of Lights, celebrates the victory of light over darkness and good over evil. It commemorates Lord Rama's return to Ayodhya after 14 years of exile.",
       "history": "The word 'Diwali' comes from the Sanskrit 'Deepavali', meaning 'row of lights'. The festival spans five days, with the main celebration on the third day. Each day has its own significance and rituals, making it one of the most important Hindu festivals.",
@@ -5352,7 +6167,7 @@
     "month": "October",
     "color": "#10B981",
     "tagline": "Celebrating Govardhan Puja",
-    "heroImage": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Govardhan Puja is an important festival celebrated across Uttar Pradesh, Bihar, Rajasthan.",
       "history": "The festival of Govardhan Puja has deep cultural and religious significance.",
@@ -5462,6 +6277,142 @@
     }
   },
   {
+    "id": "kali-puja",
+    "name": "Kali Puja",
+    "nameDevanagari": "काली पूजा",
+    "date": "2025-10-21",
+    "date_2025": "2025-10-21",
+    "date_2026": "2026-11-10",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "West Bengal",
+      "Assam",
+      "Odisha",
+      "Bihar"
+    ],
+    "date_type": "Lunar",
+    "importance": "High",
+    "category": "religious",
+    "month": "October",
+    "color": "#FF6B35",
+    "tagline": "Worshipping Goddess Kali, the destroyer of evil",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Kali Puja is dedicated to Goddess Kali, celebrated on the new moon day of Kartik month.",
+      "history": "Kali Puja is celebrated on the same day as Diwali in some regions, especially Bengal. It honors Goddess Kali, who represents time, change, power, and destruction of evil forces.",
+      "significance": "The festival is dedicated to Goddess Kali, who destroys evil and protects devotees. It's celebrated with elaborate rituals, offerings, and prayers.",
+      "duration": "1 day",
+      "region": "Especially West Bengal"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Prepare Kali Idol",
+        "description": "Set up Kali idol or picture in your puja area.",
+        "timeNeeded": "30 minutes",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Perform Kali Puja",
+        "description": "Perform puja with flowers, incense, and traditional offerings.",
+        "timeNeeded": "1-2 hours",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 3,
+        "title": "Light Lamps",
+        "description": "Light diyas and lamps throughout the night.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "kali-puja-sweet",
+        "name": "Rasgulla",
+        "nameDevanagari": "रसगुल्ला",
+        "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
+        "description": "Soft, spongy cottage cheese balls in sugar syrup",
+        "difficulty": "Hard",
+        "prepTime": "1 hour",
+        "cookTime": "45 min",
+        "servings": "15 pieces",
+        "ingredients": [
+          "2 liters full cream milk",
+          "2 tbsp lemon juice",
+          "1.5 cups sugar",
+          "3 cups water",
+          "Cardamom powder"
+        ],
+        "instructions": [
+          "Curdle milk with lemon juice",
+          "Strain and knead chenna until smooth",
+          "Make small balls",
+          "Boil sugar syrup",
+          "Add balls and cook until spongy"
+        ],
+        "tips": [
+          "Chenna must be smooth and non-grainy",
+          "Syrup should be light and flavorful",
+          "Serve chilled"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Kali Puja Setup",
+        "description": "Decorate for Kali Puja with traditional elements.",
+        "materials": [
+          "Kali idol",
+          "Diyas",
+          "Red flowers",
+          "Incense"
+        ],
+        "difficulty": "Easy",
+        "timeNeeded": "1 hour",
+        "steps": [
+          "Set up Kali idol",
+          "Decorate with red flowers",
+          "Light diyas",
+          "Arrange offerings"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Use small idol",
+          "Decorate with red flowers",
+          "Light many diyas"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Kali idol",
+        "Red flowers",
+        "Incense",
+        "Camphor"
+      ],
+      "lighting": [
+        "Diyas",
+        "Red candles",
+        "Lights"
+      ],
+      "decoration": [
+        "Red flowers",
+        "Rangoli",
+        "Streamers"
+      ],
+      "cooking": [
+        "Rasgulla ingredients",
+        "Other sweets",
+        "Fruits"
+      ]
+    }
+  },
+  {
     "id": "bhai-dooj",
     "name": "Bhai Dooj",
     "nameDevanagari": "भाई दूज",
@@ -5469,7 +6420,7 @@
     "category": "cultural",
     "color": "#F59E0B",
     "tagline": "Celebrating the eternal bond between brothers and sisters",
-    "heroImage": "https://images.unsplash.com/photo-1634987861589-4978e39dd391?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Bhai Dooj celebrates the love between brothers and sisters. Sisters perform tilak ceremony for brothers and pray for their long life and prosperity.",
       "history": "According to legend, Yama (god of death) visited his sister Yamuna on this day. She welcomed him with tilak and aarti, and Yama blessed her, declaring that any brother visiting his sister on this day would be blessed.",
@@ -5665,7 +6616,7 @@
     "month": "October",
     "color": "#FF6B35",
     "tagline": "Celebrating Bhaubeej",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Bhaubeej is an important festival celebrated across Maharashtra, Goa, Karnataka.",
       "history": "The festival of Bhaubeej has deep cultural and religious significance.",
@@ -5782,7 +6733,7 @@
     "category": "cultural",
     "color": "#EC4899",
     "tagline": "A day of love, devotion and the sacred bond between husband and wife",
-    "heroImage": "https://images.unsplash.com/photo-1609257852720-87b1c68e5b2a?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Karwa Chauth is a one-day festival celebrated by married Hindu women who fast from sunrise to moonrise for the safety and longevity of their husbands.",
       "history": "The festival has ancient origins with stories of queens like Veeravati and Karwa who saved their husbands through devotion. It's especially popular in North India.",
@@ -5968,7 +6919,7 @@
     "category": "religious",
     "color": "#FB923C",
     "tagline": "Worshipping the Sun God with devotion and purity",
-    "heroImage": "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Chhath Puja is an ancient Hindu festival dedicated to the Sun God (Surya) and Chhathi Maiya. It's primarily celebrated in Bihar, Jharkhand and Eastern Uttar Pradesh.",
       "history": "The festival is believed to have been started by Karna, son of Surya, in the Mahabharata era. Draupadi also performed this puja. It's one of the most rigorous and eco-friendly festivals.",
@@ -6171,7 +7122,7 @@
     "month": "November",
     "color": "#10B981",
     "tagline": "Celebrating Kartik Purnima",
-    "heroImage": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Kartik Purnima is an important festival celebrated across Uttar Pradesh, Bihar, Uttarakhand.",
       "history": "The festival of Kartik Purnima has deep cultural and religious significance.",
@@ -6299,7 +7250,7 @@
     "month": "November",
     "color": "#3B82F6",
     "tagline": "Celebrating Guru Nanak Jayanti",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Guru Nanak Jayanti is an important festival celebrated across Punjab, Haryana, Delhi.",
       "history": "The festival of Guru Nanak Jayanti has deep cultural and religious significance.",
@@ -6409,6 +7360,139 @@
     }
   },
   {
+    "id": "tulsi-vivah",
+    "name": "Tulsi Vivah",
+    "nameDevanagari": "तुलसी विवाह",
+    "date": "2025-11-15",
+    "date_2025": "2025-11-15",
+    "date_2026": "2026-11-05",
+    "region": "Pan-Indian",
+    "primary_states": [
+      "All States"
+    ],
+    "date_type": "Lunar",
+    "importance": "Medium",
+    "category": "religious",
+    "month": "November",
+    "color": "#10B981",
+    "tagline": "Sacred marriage of Tulsi plant with Lord Vishnu",
+    "heroImage": "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=85&auto=format",
+    "overview": {
+      "brief": "Tulsi Vivah marks the ceremonial marriage of the Tulsi plant (holy basil) with Lord Vishnu.",
+      "history": "According to Hindu mythology, Tulsi was married to the demon Jalandhar. After his death, she was married to Lord Vishnu. This festival celebrates this divine marriage.",
+      "significance": "Tulsi Vivah marks the beginning of the wedding season in Hindu culture. It's considered auspicious and is celebrated with rituals similar to a wedding ceremony.",
+      "duration": "1 day",
+      "region": "Pan-India"
+    },
+    "howToCelebrate": [
+      {
+        "step": 1,
+        "title": "Prepare Tulsi Plant",
+        "description": "Decorate the Tulsi plant with rangoli, flowers, and lights.",
+        "timeNeeded": "30 minutes",
+        "difficulty": "Easy"
+      },
+      {
+        "step": 2,
+        "title": "Perform Vivah Ceremony",
+        "description": "Perform the wedding ceremony with Shaligram (representing Vishnu) and Tulsi plant.",
+        "timeNeeded": "1 hour",
+        "difficulty": "Medium"
+      },
+      {
+        "step": 3,
+        "title": "Offer Prasad",
+        "description": "Distribute prasad (sweets) to family and neighbors.",
+        "timeNeeded": "30 minutes",
+        "difficulty": "Easy"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "halwa",
+        "name": "Sooji Halwa",
+        "nameDevanagari": "सूजी हलवा",
+        "image": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
+        "description": "Semolina pudding, traditional for Tulsi Vivah",
+        "difficulty": "Easy",
+        "prepTime": "10 min",
+        "cookTime": "20 min",
+        "servings": "6 servings",
+        "ingredients": [
+          "1 cup semolina (sooji)",
+          "1 cup sugar",
+          "1/2 cup ghee",
+          "2 cups water",
+          "Cardamom powder",
+          "Nuts and raisins"
+        ],
+        "instructions": [
+          "Roast semolina in ghee until golden",
+          "Boil water with sugar",
+          "Add water to semolina, stirring continuously",
+          "Add cardamom and nuts",
+          "Cook until thick and glossy"
+        ],
+        "tips": [
+          "Roast semolina well for nutty flavor",
+          "Stir continuously to avoid lumps",
+          "Serve hot"
+        ]
+      }
+    ],
+    "decorations": [
+      {
+        "type": "Traditional",
+        "title": "Tulsi Plant Decoration",
+        "description": "Decorate Tulsi plant for the wedding ceremony.",
+        "materials": [
+          "Tulsi plant",
+          "Rangoli",
+          "Flowers",
+          "Lights"
+        ],
+        "difficulty": "Easy",
+        "timeNeeded": "1 hour",
+        "steps": [
+          "Clean area around Tulsi",
+          "Draw rangoli",
+          "Decorate with flowers",
+          "Add lights"
+        ],
+        "images": [
+          "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=80"
+        ],
+        "beginnerTips": [
+          "Use natural flowers",
+          "Draw simple rangoli",
+          "Add fairy lights"
+        ]
+      }
+    ],
+    "shoppingList": {
+      "puja": [
+        "Shaligram",
+        "Tulsi leaves",
+        "Flowers",
+        "Incense"
+      ],
+      "lighting": [
+        "Diyas",
+        "Lights"
+      ],
+      "decoration": [
+        "Rangoli colors",
+        "Flowers",
+        "Decorations"
+      ],
+      "cooking": [
+        "Halwa ingredients",
+        "Sweets",
+        "Fruits"
+      ]
+    }
+  },
+  {
     "id": "christmas",
     "name": "Christmas",
     "nameDevanagari": "क्रिसमस",
@@ -6425,7 +7509,7 @@
     "month": "December",
     "color": "#3B82F6",
     "tagline": "Celebrating Christmas",
-    "heroImage": "https://images.unsplash.com/photo-1636403830156-e0c0b1e6ade3?w=800&q=80",
+    "heroImage": "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&h=600&fit=crop&q=85&auto=format",
     "overview": {
       "brief": "Christmas is an important festival celebrated across All States.",
       "history": "The festival of Christmas has deep cultural and religious significance.",
