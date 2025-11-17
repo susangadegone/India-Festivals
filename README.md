@@ -53,9 +53,18 @@ Each festival includes rich, detailed information presented in beautiful tabs:
 
 ### 🔍 Search & Filter
 - **Real-time search** by festival name (English or Devanagari)
-- **Category filters**: All, Religious, Cultural, Harvest
+- **Category filters**: All, Religious, Cultural, Harvest, National
+- **Regional filters**: Marathi, Hindi, Pan-Indian
 - Responsive filtering in calendar and list views
 - Clear results messaging
+
+### 🕉️ Panchang API Integration
+- **Accurate festival dates** from Panchang API (optional)
+- **Multiple API providers** supported (Divine API, Vedic Rishi, Drik Panchang)
+- **Automatic caching** (24-hour cache to reduce API calls)
+- **Date sync component** in Profile page for updating dates
+- **Fallback to static dates** if API is unavailable
+- **Location-based calculations** for accurate regional dates
 
 ### 🎨 Modern Indian Design Aesthetic
 - **Color palette inspired by Indian textiles**: Saffron, turmeric yellow, deep reds, peacock blues, gold accents
@@ -82,20 +91,62 @@ Each festival includes rich, detailed information presented in beautiful tabs:
 
 ## 🎊 Festival Collection
 
-The app includes comprehensive data for 6+ major festivals:
+The app includes comprehensive data for **39 festivals** organized by region:
 
+### Marathi Festivals (10)
+1. **Gudi Padwa** (गुढी पाडवा) - Marathi New Year
+2. **Ganesh Chaturthi** (गणेश चतुर्थी) - Birth of Lord Ganesha
+3. **Narali Pournima** (नारळी पौर्णिमा) - Coconut Festival
+4. **Pola** (पोला) - Cattle Festival
+5. **Bhaubeej** (भाऊबीज) - Brother-Sister Bond
+6. **Shiv Jayanti** (शिव जयंती) - Shivaji Maharaj Birthday
+7. **Nag Panchami** (नाग पंचमी) - Snake Worship
+8. **Ashadhi Ekadashi** (आषाढी एकादशी) - Pandharpur Pilgrimage
+9. **Vat Pournima** (वट पौर्णिमा) - Married Women's Festival
+10. **Bail Pola** (बैल पोला) - Bull Festival
+
+### Hindi Belt Festivals (9)
+1. **Ram Navami** (राम नवमी) - Birth of Lord Rama
+2. **Karwa Chauth** (करवा चौथ) - Married Women's Fast
+3. **Chhath Puja** (छठ पूजा) - Sun Worship
+4. **Lathmar Holi** (लट्ठमार होली) - Special Holi in UP
+5. **Madhushravani** (मधुश्रावणी) - Mithila Festival
+6. **Kartik Purnima** (कार्तिक पूर्णिमा) - Full Moon Festival
+7. **Teej** (तीज) - Women's Festival
+8. **Govardhan Puja** (गोवर्धन पूजा) - Mountain Worship
+9. **Shravani Mela** (श्रावणी मेला) - Pilgrimage Festival
+
+### Pan-Indian Festivals (20)
 1. **Diwali** (दिवाळी) - Festival of Lights
 2. **Holi** (होळी) - Festival of Colors
-3. **Ganesh Chaturthi** (गणेश चतुर्थी) - Birth of Lord Ganesha
-4. **Navratri** (नवरात्री) - Nine Nights of Divine Feminine
-5. **Gudi Padwa** (गुढी पाडवा) - Marathi New Year
-6. **Makar Sankranti** (मकर संक्रांति) - Harvest Festival
+3. **Navratri** (नवरात्री) - Nine Nights of Divine Feminine
+4. **Makar Sankranti** (मकर संक्रांति) - Harvest Festival
+5. **Raksha Bandhan** (रक्षा बंधन) - Brother-Sister Bond
+6. **Janmashtami** (जन्माष्टमी) - Birth of Lord Krishna
+7. **Maha Shivratri** (महा शिवरात्री) - Great Night of Shiva
+8. **Bhai Dooj** (भाई दूज) - Brother-Sister Festival
+9. **Lohri** (लोहड़ी) - Harvest Festival
+10. **Vasant Panchami** (वसंत पंचमी) - Spring Festival
+11. **Eid ul-Fitr** (ईद उल-फ़ित्र) - End of Ramadan
+12. **Eid ul-Adha** (ईद उल-अज़हा) - Festival of Sacrifice
+13. **Christmas** (क्रिसमस) - Birth of Jesus
+14. **Good Friday** (गुड फ्राइडे) - Crucifixion Day
+15. **Buddha Purnima** (बुद्ध पूर्णिमा) - Birth of Buddha
+16. **Guru Nanak Jayanti** (गुरु नानक जयंती) - Birth of Guru Nanak
+17. **Mahavir Jayanti** (महावीर जयंती) - Birth of Mahavir
+18. **Republic Day** (गणतंत्र दिवस) - January 26
+19. **Independence Day** (स्वतंत्रता दिवस) - August 15
+20. **Gandhi Jayanti** (गांधी जयंती) - October 2
 
 Each festival features:
 - 3-5 detailed traditional recipes with full instructions
 - Multiple decoration ideas with step-by-step guides
 - Complete shopping lists
 - Cultural context and modern celebration tips
+- Regional classification (Marathi/Hindi/Pan-Indian)
+- Date type (Lunar/Solar/Fixed)
+- Importance level (Very High/High/Medium)
+- Primary states where it's celebrated
 
 ## 🛠️ Technology Stack
 
@@ -135,6 +186,25 @@ npm start
 
 Visit [http://localhost:3000](http://localhost:3000) to see the app in action!
 
+### Panchang API Setup (Optional)
+
+For accurate festival dates from Panchang API:
+
+1. **Choose an API provider** (Divine API recommended)
+2. **Get API key** from provider dashboard
+3. **Configure environment variables**:
+
+```bash
+# Create .env.local file
+NEXT_PUBLIC_PANCHANG_PROVIDER=divine
+NEXT_PUBLIC_PANCHANG_API_KEY=your_api_key_here
+PANCHANG_API_KEY=your_api_key_here
+```
+
+4. **Use Date Sync component** in Profile page to sync dates
+
+See [PANCHANG_API_SETUP.md](PANCHANG_API_SETUP.md) for detailed instructions.
+
 ## 📁 Project Structure
 
 ```
@@ -153,10 +223,20 @@ hindu-marathi-festivals-app/
 ├── data/
 │   └── comprehensive-festivals.json  # Festival data with recipes & guides
 ├── lib/
-│   └── utils.ts              # Utility functions
+│   ├── utils.ts              # Utility functions
+│   └── panchang-api.ts       # Panchang API integration
+├── app/
+│   └── api/
+│       └── panchang-proxy/   # API proxy route
+│           └── route.ts
+├── components/
+│   ├── PanchangDateSync.tsx  # Date sync component
+│   └── ...
 ├── public/                   # Static assets
 ├── tailwind.config.js        # Tailwind configuration with custom colors
-└── tsconfig.json             # TypeScript configuration
+├── tsconfig.json             # TypeScript configuration
+├── PANCHANG_API_SETUP.md     # Panchang API setup guide
+└── PANCHANG_API_QUICK_START.md # Quick start guide
 ```
 
 ## 🎨 Design Philosophy

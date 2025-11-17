@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { User, Camera, Palette, Share2, Heart, Download } from 'lucide-react'
 import { getRandomSaiBabaQuote } from '@/lib/utils'
 import saiBabaQuotes from '@/data/sai-baba-quotes.json'
+import PanchangDateSync from './PanchangDateSync'
 
 export default function Profile() {
   const [selectedTheme, setSelectedTheme] = useState('saffron')
@@ -242,11 +243,20 @@ export default function Profile() {
         </Card>
       </motion.div>
 
-      {/* Quick Actions */}
+      {/* Panchang API Date Sync */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
+      >
+        <PanchangDateSync />
+      </motion.div>
+
+      {/* Quick Actions */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
       >
         <Card>
           <CardHeader>
