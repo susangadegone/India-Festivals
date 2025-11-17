@@ -12,21 +12,22 @@ interface Festival {
   name: string
   nameDevanagari: string
   date: string
+  date_2025?: string
+  date_2026?: string
+  region?: 'Marathi' | 'Hindi' | 'Pan-Indian'
+  primary_states?: string[]
+  date_type?: 'Lunar' | 'Solar' | 'Fixed'
+  importance?: 'Very High' | 'High' | 'Medium'
   category: string
   color: string
   tagline: string
   heroImage: string
-  overview: {
-    brief: string
-    history: string
-    significance: string
-    duration: string
-    region: string
-  }
+  overview: any
   howToCelebrate: any[]
   recipes: any[]
   decorations: any[]
   shoppingList: any
+  month?: string
 }
 
 export default function HindiFestivals() {
@@ -35,10 +36,8 @@ export default function HindiFestivals() {
   
   const allFestivals = comprehensiveFestivalsData as Festival[]
   
-  // Filter Hindi/North Indian festivals
-  const hindiFestivals = allFestivals.filter(festival => 
-    ['janmashtami', 'ram-navami', 'mahashivratri', 'raksha-bandhan', 'holi', 'diwali', 'navratri'].includes(festival.id)
-  )
+  // Filter Hindi Belt festivals
+  const hindiFestivals = allFestivals.filter(festival => festival.region === 'Hindi')
 
   const toggleFavorite = (festivalId: string) => {
     const newFavorites = new Set(favorites)

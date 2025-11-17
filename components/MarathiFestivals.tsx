@@ -2,44 +2,55 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Heart, Calendar, MapPin, Star } from 'lucide-react'
-import { formatDate, isUpcoming } from '@/lib/utils'
-import festivalsData from '@/data/festivals.json'
+import { Card, CardContent } from '@/components/ui/card'
+import { Heart, Calendar as CalendarIcon } from 'lucide-react'
+import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
+import FestivalDetail from './FestivalDetail'
 
 interface Festival {
   id: string
   name: string
-  marathiName: string
-  type: string
+  nameDevanagari: string
   date: string
-  description: string
-  foods: {
-    traditional: string[]
-    beginnerFriendly: string[]
-  }
-  homeDecor: {
-    essential: string[]
-    beginnerTips: string[]
-  }
-  chants: string[]
-  how_to_celebrate: string
-  image_url: string
-  region: string
-  significance: string
-  rituals: string[]
-  colors: string[]
-  difficulty: string
-  duration: string
+  date_2025?: string
+  date_2026?: string
+  region?: 'Marathi' | 'Hindi' | 'Pan-Indian'
+  primary_states?: string[]
+  date_type?: 'Lunar' | 'Solar' | 'Fixed'
+  importance?: 'Very High' | 'High' | 'Medium'
+  category: string
+  color: string
+  tagline: string
+  heroImage: string
+  overview: any
+  howToCelebrate: any[]
+  recipes: any[]
+  decorations: any[]
+  shoppingList: any
+  month?: string
 }
 
 export default function MarathiFestivals() {
   const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null)
-  const marathiFestivals = festivalsData.filter(festival => festival.type === 'Marathi')
+  const [favorites, setFavorites] = useState<Set<string>>(new Set())
+  
+  const allFestivals = comprehensiveFestivalsData as Festival[]
+  
+  // Filter Marathi festivals
+  const marathiFestivals = allFestivals.filter(festival => festival.region === 'Marathi')
+  
+  const toggleFavorite = (festivalId: string) => {
+    const newFavorites = new Set(favorites)
+    if (newFavorites.has(festivalId)) {
+      newFavorites.delete(festivalId)
+    } else {
+      newFavorites.add(festivalId)
+    }
+    setFavorites(newFavorites)
+  }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -47,13 +58,13 @@ export default function MarathiFestivals() {
         className="text-center"
       >
         <div className="flex items-center justify-center gap-3 mb-4">
-          <Heart className="w-8 h-8 text-rose-600" />
-          <h2 className="text-3xl font-bold text-rose-800">
+          <span className="text-5xl">🪔</span>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
             Marathi Festivals
           </h2>
         </div>
-        <p className="text-rose-600 max-w-2xl mx-auto">
-          Celebrate the rich cultural heritage of Maharashtra with these beautiful festivals
+        <p className="text-lg text-orange-700 font-semibold">
+          मराठी त्योहार - Celebrate Maharashtra traditions
         </p>
       </motion.div>
 
@@ -65,64 +76,96 @@ export default function MarathiFestivals() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            whileHover={{ scale: 1.02 }}
-            className="cursor-pointer"
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="cursor-pointer group"
             onClick={() => setSelectedFestival(festival)}
           >
-            <Card className="card-hover marathi-gradient border-rose-200">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-xl text-rose-800 mb-1">
-                      {festival.name}
-                    </CardTitle>
-                    <p className="text-lg text-rose-600 font-marathi">
-                      {festival.marathiName}
-                    </p>
-                  </div>
+            <Card className="overflow-hidden border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-orange-50">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={festival.heroImage} 
+                  alt={festival.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-orange-900/70 via-black/20 to-transparent" />
+                <div className="absolute top-3 right-3 flex gap-2">
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      toggleFavorite(festival.id)
+                    }}
+                    className="p-2.5 bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:scale-110 transition-transform"
+                  >
+                    <Heart 
+                      className={`w-4 h-4 ${
+                        favorites.has(festival.id) 
+                          ? 'fill-red-500 text-red-500' 
+                          : 'text-gray-700'
+                      }`} 
+                    />
+                  </motion.button>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <h4 className="font-bold text-white text-xl drop-shadow-lg mb-1">
+                    {festival.name}
+                  </h4>
+                  <p className="text-sm text-yellow-100 drop-shadow font-marathi">
+                    {festival.nameDevanagari}
+                  </p>
+                </div>
+              </div>
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
                   <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-rose-500" />
-                    <span className="text-xs text-rose-600">Marathi</span>
+                    <CalendarIcon className="w-4 h-4 text-orange-600" />
+                    <span className="text-sm text-orange-700 font-bold">
+                      {new Date(festival.date).toLocaleDateString('en-US', { 
+                        month: 'long', 
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </span>
                   </div>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-rose-700">
-                  <Calendar className="w-4 h-4" />
-                  <span>{formatDate(festival.date)}</span>
-                  {isUpcoming(festival.date) && (
-                    <span className="px-2 py-1 bg-rose-100 text-rose-800 rounded-full text-xs">
-                      Upcoming
+                  {festival.date_type && (
+                    <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">
+                      {festival.date_type}
+                    </span>
+                  )}
+                  {festival.importance && (
+                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${
+                      festival.importance === 'Very High' ? 'bg-red-100 text-red-700' :
+                      festival.importance === 'High' ? 'bg-orange-100 text-orange-700' :
+                      'bg-yellow-100 text-yellow-700'
+                    }`}>
+                      {festival.importance}
                     </span>
                   )}
                 </div>
-                
-                <div className="flex items-center gap-2 text-sm text-rose-700">
-                  <MapPin className="w-4 h-4" />
-                  <span>{festival.region}</span>
-                </div>
-                
-                <p className="text-sm text-gray-700 line-clamp-3">
-                  {festival.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-1">
-                  {festival.foods.traditional.slice(0, 2).map((food, foodIndex) => (
-                    <span key={foodIndex} className="px-2 py-1 bg-rose-100 text-rose-800 rounded-full text-xs">
-                      {food}
-                    </span>
-                  ))}
-                  {festival.foods.beginnerFriendly.slice(0, 1).map((food, foodIndex) => (
-                    <span key={foodIndex} className="px-2 py-1 bg-teal-100 text-teal-800 rounded-full text-xs">
-                      {food}
-                    </span>
-                  ))}
-                  {(festival.foods.traditional.length + festival.foods.beginnerFriendly.length) > 3 && (
-                    <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
-                      +{(festival.foods.traditional.length + festival.foods.beginnerFriendly.length) - 3}
+                <p className="text-sm text-gray-700 line-clamp-2 mb-4 leading-relaxed">{festival.tagline}</p>
+                <div className="flex items-center gap-2 flex-wrap mb-3">
+                  {festival.region && (
+                    <span className="px-3 py-1.5 rounded-lg text-xs font-bold border-2 bg-orange-100 text-orange-700 border-orange-300">
+                      🪔 {festival.region}
                     </span>
                   )}
+                  <span className="px-3 py-1.5 rounded-lg text-xs font-bold border-2 bg-yellow-50 text-yellow-700 border-yellow-300">
+                    {festival.category}
+                  </span>
+                </div>
+                {festival.primary_states && festival.primary_states.length > 0 && (
+                  <div className="flex items-center gap-1 mb-3 flex-wrap">
+                    <span className="text-xs text-gray-600">📍 </span>
+                    <span className="text-xs text-gray-600">
+                      {festival.primary_states.slice(0, 3).join(', ')}
+                      {festival.primary_states.length > 3 && ` +${festival.primary_states.length - 3}`}
+                    </span>
+                  </div>
+                )}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs text-orange-600 font-semibold flex items-center gap-1">
+                    🍽️ {festival.recipes.length} recipes
+                  </span>
                 </div>
               </CardContent>
             </Card>
@@ -132,116 +175,12 @@ export default function MarathiFestivals() {
 
       {/* Festival Detail Modal */}
       {selectedFestival && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-          onClick={() => setSelectedFestival(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-rose-800">{selectedFestival.name}</h3>
-                  <p className="text-lg text-rose-600 font-marathi">{selectedFestival.marathiName}</p>
-                  <p className="text-sm text-gray-600">{formatDate(selectedFestival.date)}</p>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setSelectedFestival(null)}
-                >
-                  ×
-                </Button>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">Significance</h4>
-                  <p className="text-gray-700">{selectedFestival.significance}</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">Traditional Foods</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {selectedFestival.foods.traditional.map((food, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-rose-50 rounded-lg">
-                        <span className="text-rose-600">🍽️</span>
-                        <span className="text-sm text-rose-800">{food}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <h5 className="font-medium text-rose-700 mb-2 mt-4">Beginner Friendly</h5>
-                  <div className="grid grid-cols-2 gap-2">
-                    {selectedFestival.foods.beginnerFriendly.map((food, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-teal-50 rounded-lg">
-                        <span className="text-teal-600">🌱</span>
-                        <span className="text-sm text-teal-800">{food}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">Home Decorations</h4>
-                  <div className="mb-4">
-                    <h5 className="text-sm font-medium text-rose-700 mb-2">Essential Items:</h5>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedFestival.homeDecor.essential.map((item, index) => (
-                        <span key={index} className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h5 className="text-sm font-medium text-rose-700 mb-2">Beginner Tips:</h5>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedFestival.homeDecor.beginnerTips.map((tip, index) => (
-                        <span key={index} className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                          {tip}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">Rituals & Traditions</h4>
-                  <div className="space-y-2">
-                    {selectedFestival.rituals.map((ritual, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-rose-50 rounded-lg">
-                        <span className="text-rose-600">🕉️</span>
-                        <span className="text-sm text-rose-800">{ritual}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">Chants & Mantras</h4>
-                  <div className="space-y-2">
-                    {selectedFestival.chants.map((chant, index) => (
-                      <p key={index} className="mantra-text text-rose-700 bg-rose-50 p-3 rounded-lg">
-                        {chant}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-rose-800 mb-2">How to Celebrate</h4>
-                  <p className="text-gray-700">{selectedFestival.how_to_celebrate}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+        <FestivalDetail
+          festival={selectedFestival}
+          onClose={() => setSelectedFestival(null)}
+          isFavorite={favorites.has(selectedFestival.id)}
+          onToggleFavorite={() => toggleFavorite(selectedFestival.id)}
+        />
       )}
     </div>
   )
