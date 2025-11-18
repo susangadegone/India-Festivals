@@ -3,20 +3,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import LandingPage from '@/components/LandingPage'
-import EnhancedCalendarView from '@/components/EnhancedCalendarView'
-import FavoritesView from '@/components/FavoritesView'
-import HindiFestivals from '@/components/HindiFestivals'
-import MarathiFestivals from '@/components/MarathiFestivals'
-import Profile from '@/components/Profile'
-import { Calendar, Heart, Home, User, Sparkles } from 'lucide-react'
-import { type Country, getCountryConfig } from '@/lib/countries'
+import HomeScreen from '@/components/HomeScreen'
+import FestivalsListScreen from '@/components/FestivalsListScreen'
+import SaiBabaScreen from '@/components/SaiBabaScreen'
+import MoreScreen from '@/components/MoreScreen'
+import { Home, Calendar, Heart, Info } from 'lucide-react'
 
 export default function HomePage() {
   const [showLanding, setShowLanding] = useState(true)
-  const [activeTab, setActiveTab] = useState('calendar')
+  const [activeTab, setActiveTab] = useState('home')
   const [isLoaded, setIsLoaded] = useState(false)
-  const [favorites, setFavorites] = useState<Set<string>>(new Set())
-  const [selectedCountry] = useState<Country>('india')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,41 +26,26 @@ export default function HomePage() {
   }
 
   const tabs = [
-    { id: 'calendar', label: 'Calendar', icon: Calendar },
-    { id: 'favorites', label: 'Favorites', icon: Heart },
-    { id: 'hindi', label: 'Hindi', icon: Sparkles },
-    { id: 'marathi', label: 'Marathi', icon: Home },
-    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'festivals', label: 'Festivals', icon: Calendar },
+    { id: 'sai-baba', label: 'Sai Baba', icon: Heart },
+    { id: 'more', label: 'More', icon: Info },
   ]
-
-  const toggleFavorite = (festivalId: string) => {
-    const newFavorites = new Set(favorites)
-    if (newFavorites.has(festivalId)) {
-      newFavorites.delete(festivalId)
-    } else {
-      newFavorites.add(festivalId)
-    }
-    setFavorites(newFavorites)
-  }
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'calendar':
-        return <EnhancedCalendarView country={selectedCountry} />
-      case 'favorites':
-        return <FavoritesView favorites={favorites} onToggleFavorite={toggleFavorite} country={selectedCountry} />
-      case 'hindi':
-        return <HindiFestivals />
-      case 'marathi':
-        return <MarathiFestivals />
-      case 'profile':
-        return <Profile />
+      case 'home':
+        return <HomeScreen />
+      case 'festivals':
+        return <FestivalsListScreen />
+      case 'sai-baba':
+        return <SaiBabaScreen />
+      case 'more':
+        return <MoreScreen />
       default:
-        return <EnhancedCalendarView country={selectedCountry} />
+        return <HomeScreen />
     }
   }
-
-  const currentCountry = getCountryConfig(selectedCountry)
 
   // Show landing page on first visit
   if (showLanding && isLoaded) {
@@ -72,30 +53,30 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white app-container relative pb-20 md:pb-0 safe-area-inset">
+    <div className="min-h-screen bg-[#FFF8E7] app-container relative pb-20 md:pb-0 safe-area-inset">
       {/* Mobile App Style Header */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm safe-top"
+        className="sticky top-0 z-50 bg-[#FFF8E7]/95 backdrop-blur-xl border-b border-[#C8A15A]/20 shadow-sm safe-top"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo/Brand - Mobile optimized */}
             <motion.button
-              onClick={() => setActiveTab('calendar')}
+              onClick={() => setActiveTab('home')}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-2 md:gap-4 group touch-manipulation"
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-active:scale-95 transition-transform">
-                <span className="text-xl md:text-2xl">📅</span>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#E17735] to-[#842B2B] rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-active:scale-95 transition-transform">
+                <span className="text-xl md:text-2xl">🙏</span>
               </div>
               <div className="text-left hidden sm:block">
-                <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">
+                <h1 className="text-lg md:text-xl font-bold text-[#1E2A38]">
                   Festival Calendar
                 </h1>
-                <p className="text-xs text-gray-600 font-medium">Cultural Heritage</p>
+                <p className="text-xs text-[#842B2B] font-medium">Cultural Heritage</p>
               </div>
             </motion.button>
             
@@ -112,14 +93,14 @@ export default function HomePage() {
                     whileTap={{ scale: 0.95 }}
                     className={`relative px-4 py-2 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 ${
                       isActive 
-                        ? 'text-white bg-gradient-to-r from-saffron-500 to-rose-500 shadow-lg' 
-                        : 'text-gray-600 hover:text-saffron-600 hover:bg-saffron-50'
+                        ? 'text-white bg-gradient-to-r from-[#E17735] to-[#842B2B] shadow-lg' 
+                        : 'text-gray-600 hover:text-[#E17735] hover:bg-[#FFF8E7]'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeNavTab"
-                        className="absolute inset-0 bg-gradient-to-r from-saffron-500 to-rose-500 rounded-lg"
+                        className="absolute inset-0 bg-gradient-to-r from-[#E17735] to-[#842B2B] rounded-lg"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -153,7 +134,7 @@ export default function HomePage() {
       <motion.nav 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-t border-gray-200 shadow-2xl safe-bottom"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#FFF8E7]/98 backdrop-blur-xl border-t border-[#C8A15A]/20 shadow-2xl safe-bottom"
       >
         <div className="container mx-auto px-2 max-w-7xl">
           <div className="flex justify-around items-center h-20">
@@ -172,7 +153,7 @@ export default function HomePage() {
                   {isActive && (
                     <motion.div
                       layoutId="activeMobileTab"
-                      className="absolute inset-0 bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 rounded-2xl mx-1"
+                      className="absolute inset-0 bg-gradient-to-r from-[#E17735] to-[#842B2B] rounded-2xl mx-1"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}

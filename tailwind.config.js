@@ -17,18 +17,54 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Indian Festival Color Palette
+        // Calm Devotional Color Palette
         saffron: {
           50: '#fef7ed',
           100: '#fdedd3',
           200: '#fbd7a5',
           300: '#f8ba6d',
           400: '#f59432',
-          500: '#f2730a',
-          600: '#e35a05',
+          500: '#E17735', // Deep Saffron - Primary
+          600: '#d97706',
           700: '#bc4208',
-          800: '#95350e',
+          800: '#842B2B', // Warm Maroon
           900: '#782d0f',
+        },
+        cream: {
+          50: '#FFF8E7', // Cream - Main background
+          100: '#fef9e7',
+          200: '#fdf2c7',
+          300: '#fce68a',
+          400: '#f9d548',
+          500: '#C8A15A', // Muted Gold
+          600: '#e6a91a',
+          700: '#c0850f',
+          800: '#9a6a14',
+          900: '#7c5516',
+        },
+        maroon: {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#842B2B', // Warm Maroon - Primary
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+        },
+        midnight: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E2A38', // Midnight Blue - Primary
+          900: '#0f172a',
         },
         rose: {
           50: '#fdf2f8',

@@ -118,7 +118,7 @@ export default function FestivalDetail({ festival, onClose, isFavorite = false, 
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", damping: 25 }}
-          className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden"
+          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Hero Section */}

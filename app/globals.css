@@ -33,10 +33,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-white text-gray-900;
+    @apply text-gray-900;
+    background-color: #FFF8E7; /* Cream background - Calm Devotional theme */
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     /* Mobile app optimizations */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -55,26 +56,36 @@
     scroll-behavior: smooth;
   }
 
-  /* Modern Typography */
+  /* Modern Typography - Calm Devotional Theme */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #1E2A38;
   }
 
   h1 {
-    font-size: 3rem;
-    line-height: 1.1;
-  }
-
-  h2 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     line-height: 1.2;
   }
 
+  h2 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
   h3 {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     line-height: 1.3;
+  }
+  
+  /* Calm Devotional Color Variables */
+  :root {
+    --color-saffron: #E17735;
+    --color-cream: #FFF8E7;
+    --color-maroon: #842B2B;
+    --color-gold: #C8A15A;
+    --color-midnight: #1E2A38;
   }
 
   /* Apple-style gradient animation */
