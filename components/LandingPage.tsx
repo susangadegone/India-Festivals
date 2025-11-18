@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
-import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe } from 'lucide-react'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe, Star, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
 
@@ -12,6 +12,8 @@ interface LandingPageProps {
 
 export default function LandingPage({ onEnter }: LandingPageProps) {
   const [isExiting, setIsExiting] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const handleEnter = () => {
     setIsExiting(true)
@@ -20,8 +22,130 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
     }, 800)
   }
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePosition({ x: e.clientX, y: e.clientY })
+  }
+
   // Get featured festivals for hero
-  const featuredFestivals = comprehensiveFestivalsData.slice(0, 3)
+  const featuredFestivals = comprehensiveFestivalsData.slice(0, 6)
+
+  // Interactive card component with mouse tracking
+  const InteractiveCard = ({ festival, index }: { festival: any; index: number }) => {
+    const ref = useRef<HTMLDivElement>(null)
+    cardRefs.current[index] = ref.current
+
+    const x = useMotionValue(0)
+    const y = useMotionValue(0)
+
+    const mouseXSpring = useSpring(x, { stiffness: 500, damping: 100 })
+    const mouseYSpring = useSpring(y, { stiffness: 500, damping: 100 })
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7.5deg', '-7.5deg'])
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg'])
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!ref.current) return
+      const rect = ref.current.getBoundingClientRect()
+      const width = rect.width
+      const height = rect.height
+      const mouseX = e.clientX - rect.left
+      const mouseY = e.clientY - rect.top
+      const xPct = mouseX / width - 0.5
+      const yPct = mouseY / height - 0.5
+      x.set(xPct)
+      y.set(yPct)
+    }
+
+    const handleMouseLeave = () => {
+      x.set(0)
+      y.set(0)
+    }
+
+    return (
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+        }}
+        whileHover={{ scale: 1.05, z: 50 }}
+        className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-all overflow-hidden border border-gray-100 cursor-pointer"
+        onClick={handleEnter}
+      >
+        <div className="relative h-64 overflow-hidden">
+          <motion.img
+            src={festival.heroImage}
+            alt={festival.name}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.15 }}
+            transition={{ duration: 0.6 }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          
+          {/* Floating badge */}
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.7 + index * 0.1, type: "spring" }}
+            className="absolute top-4 right-4"
+          >
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-saffron-400 via-rose-400 to-pink-400 text-white text-xs font-bold rounded-full shadow-xl backdrop-blur-sm">
+              {festival.region || 'Pan-Indian'}
+            </span>
+          </motion.div>
+
+          <div className="absolute bottom-6 left-6 right-6">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 + index * 0.1 }}
+              className="text-2xl font-bold text-white drop-shadow-2xl mb-2"
+            >
+              {festival.name}
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 + index * 0.1 }}
+              className="text-sm text-rose-100 drop-shadow-lg"
+            >
+              {festival.nameDevanagari}
+            </motion.p>
+          </div>
+
+          {/* Shine effect */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            initial={{ x: '-100%' }}
+            whileHover={{ x: '100%' }}
+            transition={{ duration: 0.8 }}
+          />
+        </div>
+
+        <div className="p-6 bg-gradient-to-br from-white via-saffron-50/20 to-rose-50/20">
+          <p className="text-gray-700 text-sm leading-relaxed line-clamp-2 mb-4">
+            {festival.tagline || festival.overview?.shortDescription || ''}
+          </p>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-saffron-700 font-bold bg-gradient-to-r from-saffron-100 to-rose-100 px-3 py-1.5 rounded-full">
+              {new Date(festival.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </span>
+            <motion.button
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-rose-600 hover:text-rose-700 font-bold text-sm flex items-center gap-2"
+            >
+              Explore
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+    )
+  }
 
   return (
     <AnimatePresence>
@@ -31,207 +155,194 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8 }}
           className="min-h-screen bg-white relative overflow-hidden"
+          onMouseMove={handleMouseMove}
         >
-          {/* Vibrant Background Pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/40 via-rose-50/30 via-blue-50/30 to-teal-50/40" />
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 20c-5 0-10 5-10 10s5 10 10 10c3 0 5-1 7-3 2-2 3-4 3-7 0-5-5-10-10-10zm0 2c4 0 8 4 8 8 0 2-1 4-2 5-2 2-3 3-6 3-4 0-8-4-8-8s4-8 8-8z' fill='%2310b981'/%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }} />
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50" />
+          
+          {/* Floating gradient orbs */}
+          <motion.div
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-saffron-300/30 to-rose-300/30 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -80, 0],
+              y: [0, -60, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-blue-300/30 to-teal-300/30 rounded-full blur-3xl"
+          />
 
-          {/* Modern Blog-Style Hero Section */}
-          <div className="relative z-10">
-            {/* Header Navigation */}
-            <motion.header 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="absolute top-0 left-0 right-0 z-50 px-6 lg:px-8 pt-6"
-            >
-              <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Header Navigation */}
+          <motion.header 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="absolute top-0 left-0 right-0 z-50 px-6 lg:px-8 pt-8"
+          >
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-4 cursor-pointer"
+                onClick={handleEnter}
+              >
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center gap-3"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-14 h-14 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-3xl flex items-center justify-center shadow-xl"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
-                    <span className="text-2xl">📅</span>
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-bold text-gray-900">Festival Calendar</h2>
-                    <p className="text-xs text-gray-500">Cultural Heritage</p>
-                  </div>
+                  <span className="text-3xl">📅</span>
                 </motion.div>
-                <motion.button
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  onClick={handleEnter}
-                  className="px-6 py-2.5 bg-gradient-to-r from-saffron-500 to-rose-500 hover:from-saffron-600 hover:to-rose-600 text-white rounded-full font-semibold text-sm transition-all flex items-center gap-2 shadow-lg hover:shadow-xl"
-                >
-                  Explore
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </div>
-            </motion.header>
-
-            {/* Hero Section - Blog Style */}
-            <section className="min-h-screen flex items-center pt-24 pb-20 px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto w-full">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                  {/* Left: Hero Content */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-8"
-                  >
-                    {/* Badge */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2 }}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-saffron-400 via-rose-400 to-blue-400 text-white rounded-full text-sm font-semibold shadow-lg"
-                    >
-                      <Globe className="w-4 h-4" />
-                      <span>Indian Cultural Heritage</span>
-                    </motion.div>
-
-                    {/* Main Headline */}
-                    <motion.h1
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900"
-                      style={{ fontFamily: 'Georgia, serif' }}
-                    >
-                      Discover India's{' '}
-                      <span className="bg-gradient-to-r from-saffron-500 via-rose-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
-                        Rich Festival
-                      </span>{' '}
-                      Traditions
-                    </motion.h1>
-
-                    {/* Subheadline */}
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className="text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                    >
-                      हिंदी और मराठी त्योहार
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                      className="text-lg text-gray-500 leading-relaxed max-w-2xl"
-                    >
-                      Explore authentic festivals, traditional recipes, celebration guides, and the cultural significance of India's most cherished holidays.
-                    </motion.p>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 }}
-                      className="flex flex-wrap gap-4 pt-4"
-                    >
-                      <Button
-                        onClick={handleEnter}
-                        size="lg"
-                        className="bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 hover:from-saffron-600 hover:via-rose-600 hover:to-pink-600 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all flex items-center gap-2"
-                      >
-                        View Calendar
-                        <ArrowRight className="w-5 h-5" />
-                      </Button>
-                      <Button
-                        onClick={handleEnter}
-                        size="lg"
-                        variant="outline"
-                        className="border-2 border-saffron-400 hover:border-saffron-500 bg-saffron-50/50 hover:bg-saffron-100 text-saffron-700 hover:text-saffron-800 px-8 py-6 rounded-xl text-lg font-semibold transition-all"
-                      >
-                        Browse Festivals
-                      </Button>
-                    </motion.div>
-
-                    {/* Stats */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.7 }}
-                      className="flex flex-wrap gap-8 pt-8 border-t border-gray-200"
-                    >
-                      {[
-                        { number: '47+', label: 'Festivals' },
-                        { number: '2', label: 'Countries' },
-                        { number: '100%', label: 'Authentic' }
-                      ].map((stat, i) => (
-                        <div key={i} className="flex flex-col">
-                          <span className="text-3xl font-bold text-gray-900">{stat.number}</span>
-                          <span className="text-sm text-gray-500 mt-1">{stat.label}</span>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Right: Featured Festival Cards */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="space-y-6"
-                  >
-                    {featuredFestivals.map((festival: any, index: number) => (
-                      <motion.div
-                        key={festival.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 + index * 0.1 }}
-                        whileHover={{ scale: 1.02, y: -5 }}
-                        className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100"
-                      >
-                        <div className="relative h-48 overflow-hidden">
-                          <img
-                            src={festival.heroImage}
-                            alt={festival.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <span className="inline-block px-3 py-1 bg-gradient-to-r from-saffron-400 to-rose-400 text-white text-xs font-bold rounded-full mb-2 shadow-lg">
-                              {festival.region || 'Pan-Indian'}
-                            </span>
-                            <h3 className="text-xl font-bold text-white drop-shadow-lg">{festival.name}</h3>
-                          </div>
-                        </div>
-                        <div className="p-6 bg-gradient-to-br from-white to-saffron-50/30">
-                          <p className="text-gray-700 text-sm leading-relaxed line-clamp-2">
-                            {festival.tagline || festival.overview?.shortDescription || ''}
-                          </p>
-                          <div className="mt-4 flex items-center justify-between">
-                            <span className="text-xs text-saffron-700 font-semibold bg-saffron-100 px-2 py-1 rounded-full">
-                              {new Date(festival.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                            </span>
-                            <button
-                              onClick={handleEnter}
-                              className="text-rose-600 hover:text-rose-700 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
-                            >
-                              Read more
-                              <ArrowRight className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                <div>
+                  <h2 className="text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">Festival Calendar</h2>
+                  <p className="text-xs text-gray-600 font-medium">Cultural Heritage</p>
                 </div>
+              </motion.div>
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleEnter}
+                className="px-8 py-3 bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 hover:from-saffron-600 hover:via-rose-600 hover:to-pink-600 text-white rounded-full font-bold text-sm transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl"
+              >
+                Explore Now
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </div>
+          </motion.header>
+
+          {/* Hero Section - Apple Style */}
+          <section className="min-h-screen flex items-center pt-32 pb-20 px-6 lg:px-8 relative">
+            <div className="max-w-7xl mx-auto w-full">
+              {/* Main Hero Content */}
+              <div className="text-center mb-20">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring" }}
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-saffron-400/20 via-rose-400/20 to-blue-400/20 backdrop-blur-lg border border-saffron-200/50 rounded-full text-sm font-bold text-saffron-700 mb-8 shadow-lg"
+                >
+                  <Sparkles className="w-5 h-5 text-saffron-600" />
+                  <span>Indian Cultural Heritage</span>
+                  <Zap className="w-5 h-5 text-rose-600" />
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] mb-6 tracking-tight"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  <span className="block text-gray-900">Discover India's</span>
+                  <span className="block bg-gradient-to-r from-saffron-500 via-rose-500 via-blue-500 to-teal-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                    Festival Traditions
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-3xl lg:text-4xl text-gray-700 leading-relaxed mb-4 font-medium"
+                >
+                  हिंदी और मराठी त्योहार
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12"
+                >
+                  Experience 47+ authentic festivals with traditional recipes, celebration guides, and rich cultural stories.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex flex-wrap justify-center gap-6 pt-4"
+                >
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      onClick={handleEnter}
+                      size="lg"
+                      className="bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 hover:from-saffron-600 hover:via-rose-600 hover:to-pink-600 text-white px-10 py-7 rounded-2xl text-xl font-bold shadow-2xl hover:shadow-[0_20px_60px_rgba(251,113,133,0.4)] transition-all flex items-center gap-3"
+                    >
+                      View Calendar
+                      <ArrowRight className="w-6 h-6" />
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      onClick={handleEnter}
+                      size="lg"
+                      variant="outline"
+                      className="border-3 border-saffron-400 hover:border-saffron-500 bg-white/80 hover:bg-saffron-50 backdrop-blur-sm text-saffron-700 hover:text-saffron-800 px-10 py-7 rounded-2xl text-xl font-bold transition-all shadow-lg hover:shadow-xl"
+                    >
+                      Browse Festivals
+                    </Button>
+                  </motion.div>
+                </motion.div>
+
+                {/* Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="flex flex-wrap justify-center gap-12 pt-16 mt-16 border-t border-gray-200"
+                >
+                  {[
+                    { number: '47+', label: 'Festivals', icon: Star },
+                    { number: '100%', label: 'Authentic', icon: Heart },
+                    { number: '∞', label: 'Traditions', icon: Sparkles },
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
+                      whileHover={{ scale: 1.1 }}
+                      className="flex flex-col items-center gap-2"
+                    >
+                      <stat.icon className="w-8 h-8 text-saffron-500" />
+                      <span className="text-5xl font-black bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">
+                        {stat.number}
+                      </span>
+                      <span className="text-sm text-gray-600 font-semibold uppercase tracking-wider">
+                        {stat.label}
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
-            </section>
-          </div>
+
+              {/* Interactive Festival Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20"
+              >
+                {featuredFestivals.map((festival: any, index: number) => (
+                  <InteractiveCard key={festival.id} festival={festival} index={index} />
+                ))}
+              </motion.div>
+            </div>
+          </section>
         </motion.div>
       )}
     </AnimatePresence>
   )
 }
-
-
