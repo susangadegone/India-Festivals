@@ -53,12 +53,12 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white app-container relative pb-20 md:pb-0 safe-area-inset">
+    <div className="min-h-screen bg-[#FFF8E7] app-container relative pb-20 md:pb-0 safe-area-inset">
       {/* Mobile App Style Header */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm safe-top"
+        className="sticky top-0 z-50 bg-[#FFF8E7]/95 backdrop-blur-xl border-b border-[#C8A15A]/20 shadow-sm safe-top"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -69,14 +69,14 @@ export default function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-2 md:gap-4 group touch-manipulation"
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-active:scale-95 transition-transform">
-                <span className="text-xl md:text-2xl">📅</span>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#E17735] to-[#842B2B] rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-active:scale-95 transition-transform">
+                <span className="text-xl md:text-2xl">🙏</span>
               </div>
               <div className="text-left hidden sm:block">
-                <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">
+                <h1 className="text-lg md:text-xl font-bold text-[#1E2A38]">
                   Festival Calendar
                 </h1>
-                <p className="text-xs text-gray-600 font-medium">Cultural Heritage</p>
+                <p className="text-xs text-[#842B2B] font-medium">Cultural Heritage</p>
               </div>
             </motion.button>
             
@@ -93,14 +93,14 @@ export default function HomePage() {
                     whileTap={{ scale: 0.95 }}
                     className={`relative px-4 py-2 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 ${
                       isActive 
-                        ? 'text-white bg-gradient-to-r from-saffron-500 to-rose-500 shadow-lg' 
-                        : 'text-gray-600 hover:text-saffron-600 hover:bg-saffron-50'
+                        ? 'text-white bg-gradient-to-r from-[#E17735] to-[#842B2B] shadow-lg' 
+                        : 'text-gray-600 hover:text-[#E17735] hover:bg-[#FFF8E7]'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeNavTab"
-                        className="absolute inset-0 bg-gradient-to-r from-saffron-500 to-rose-500 rounded-lg"
+                        className="absolute inset-0 bg-gradient-to-r from-[#E17735] to-[#842B2B] rounded-lg"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -134,7 +134,7 @@ export default function HomePage() {
       <motion.nav 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-t border-gray-200 shadow-2xl safe-bottom"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#FFF8E7]/98 backdrop-blur-xl border-t border-[#C8A15A]/20 shadow-2xl safe-bottom"
       >
         <div className="container mx-auto px-2 max-w-7xl">
           <div className="flex justify-around items-center h-20">
@@ -153,7 +153,7 @@ export default function HomePage() {
                   {isActive && (
                     <motion.div
                       layoutId="activeMobileTab"
-                      className="absolute inset-0 bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 rounded-2xl mx-1"
+                      className="absolute inset-0 bg-gradient-to-r from-[#E17735] to-[#842B2B] rounded-2xl mx-1"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
