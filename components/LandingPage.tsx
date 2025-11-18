@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { Calendar, Sparkles, Heart, BookOpen } from 'lucide-react'
+import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
 
 interface LandingPageProps {
   onEnter: () => void
@@ -19,6 +20,9 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
     }, 800)
   }
 
+  // Get featured festivals for hero
+  const featuredFestivals = comprehensiveFestivalsData.slice(0, 3)
+
   return (
     <AnimatePresence>
       {!isExiting && (
@@ -26,257 +30,204 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8 }}
-          className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 via-red-50 to-pink-50 relative overflow-hidden"
+          className="min-h-screen bg-white relative overflow-hidden"
         >
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Floating Diyas */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  y: [0, -30, 0],
-                  x: [0, Math.sin(i) * 20, 0],
-                  rotate: [0, 5, -5, 0],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{
-                  duration: 5 + i,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5
-                }}
-                className="absolute text-6xl"
-                style={{
-                  left: `${(i * 15) + 5}%`,
-                  top: `${(i % 3) * 30 + 10}%`
-                }}
-              >
-                🪔
-              </motion.div>
-            ))}
+          {/* Subtle Background Pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-sage-50/20 to-mint-50/30" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 20c-5 0-10 5-10 10s5 10 10 10c3 0 5-1 7-3 2-2 3-4 3-7 0-5-5-10-10-10zm0 2c4 0 8 4 8 8 0 2-1 4-2 5-2 2-3 3-6 3-4 0-8-4-8-8s4-8 8-8z' fill='%2310b981'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }} />
 
-            {/* Animated Mandalas */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-              className="absolute top-10 right-10 w-64 h-64 border-8 border-orange-200 rounded-full opacity-20"
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-20 left-20 w-48 h-48 border-8 border-red-200 rounded-full opacity-20"
-            />
-
-            {/* Floating Flowers */}
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={`flower-${i}`}
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{
-                  duration: 8 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.3
-                }}
-                className="absolute text-3xl opacity-40"
-                style={{
-                  left: `${(i * 8) + 2}%`,
-                  bottom: `${(i % 4) * 20}%`
-                }}
-              >
-                {i % 3 === 0 ? '🌺' : i % 3 === 1 ? '🌼' : '🏵️'}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Main Content */}
-          <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12">
-            {/* Logo Section */}
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 200, 
-                damping: 20,
-                delay: 0.2 
-              }}
-              className="mb-8"
-            >
-              <div className="relative">
-                {/* Glowing Background */}
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute inset-0 bg-gradient-to-r from-orange-400 via-red-400 to-pink-400 rounded-full blur-3xl"
-                />
-                
-                {/* Main Logo */}
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 5, -5, 0],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="relative w-40 h-40 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl"
-                >
-                  <span className="text-7xl drop-shadow-2xl">🪔</span>
-                  
-                  {/* Orbiting Elements */}
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0"
-                  >
-                    <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-2xl">✨</span>
-                    <span className="absolute top-1/2 -right-2 -translate-y-1/2 text-2xl">🌺</span>
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-2xl">✨</span>
-                    <span className="absolute top-1/2 -left-2 -translate-y-1/2 text-2xl">🌼</span>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Title Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+          {/* Modern Blog-Style Hero Section */}
+          <div className="relative z-10">
+            {/* Header Navigation */}
+            <motion.header 
+              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-center mb-6 max-w-4xl"
+              className="absolute top-0 left-0 right-0 z-50 px-6 lg:px-8 pt-6"
             >
-              <motion.h1
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-orange-600 via-red-600 via-pink-600 to-orange-600 bg-[length:200%_auto] bg-clip-text text-transparent"
-                style={{ fontFamily: 'Georgia, serif' }}
-              >
-                India Festival Calendar
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="text-2xl md:text-3xl text-orange-800 font-semibold mb-3"
-                style={{ fontFamily: 'Georgia, serif' }}
-              >
-                हिंदी और मराठी त्योहार
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="text-lg md:text-xl text-gray-700 italic"
-              >
-                Celebrating India's Rich Cultural Heritage
-              </motion.p>
-            </motion.div>
-
-            {/* Feature Pills */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="flex flex-wrap justify-center gap-4 mb-12 max-w-3xl"
-            >
-              {[
-                { icon: Calendar, text: '15+ Festivals', color: 'from-orange-500 to-red-500' },
-                { icon: BookOpen, text: 'Complete Guides', color: 'from-red-500 to-pink-500' },
-                { icon: Heart, text: 'Traditional Recipes', color: 'from-pink-500 to-orange-500' },
-                { icon: Sparkles, text: 'Beautiful Design', color: 'from-yellow-500 to-orange-500' }
-              ].map((feature, i) => (
+              <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.4 + i * 0.1, type: "spring" }}
-                  whileHover={{ scale: 1.05 }}
-                  className={`bg-gradient-to-r ${feature.color} text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex items-center gap-3"
                 >
-                  <feature.icon className="w-5 h-5" />
-                  <span className="font-semibold">{feature.text}</span>
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-sage-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-2xl">📅</span>
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-900">Festival Calendar</h2>
+                    <p className="text-xs text-gray-500">Cultural Heritage</p>
+                  </div>
                 </motion.div>
-              ))}
-            </motion.div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.8, type: "spring", stiffness: 200 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
+                <motion.button
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   onClick={handleEnter}
-                  className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 text-white px-12 py-8 rounded-2xl text-2xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3"
+                  className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-medium text-sm transition-colors flex items-center gap-2 shadow-lg"
                 >
-                  <span>Explore Festivals</span>
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                  Explore
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </div>
+            </motion.header>
+
+            {/* Hero Section - Blog Style */}
+            <section className="min-h-screen flex items-center pt-24 pb-20 px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto w-full">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                  {/* Left: Hero Content */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="space-y-8"
                   >
-                    →
-                  </motion.span>
-                </Button>
-              </motion.div>
-            </motion.div>
+                    {/* Badge */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium"
+                    >
+                      <Globe className="w-4 h-4" />
+                      <span>Indian Cultural Heritage</span>
+                    </motion.div>
 
-            {/* Bottom Decoration */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
-              className="mt-12 flex gap-8 text-5xl"
-            >
-              {['🕉️', '🙏', '🪔', '🌺', '✨'].map((emoji, i) => (
-                <motion.span
-                  key={i}
-                  animate={{
-                    y: [0, -10, 0],
-                    rotate: [0, 10, -10, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.2
-                  }}
-                  className="drop-shadow-lg"
-                >
-                  {emoji}
-                </motion.span>
-              ))}
-            </motion.div>
+                    {/* Main Headline */}
+                    <motion.h1
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900"
+                      style={{ fontFamily: 'Georgia, serif' }}
+                    >
+                      Discover India's{' '}
+                      <span className="bg-gradient-to-r from-emerald-600 via-sage-600 to-mint-600 bg-clip-text text-transparent">
+                        Rich Festival
+                      </span>{' '}
+                      Traditions
+                    </motion.h1>
 
-            {/* Credits */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.2 }}
-              className="mt-8 text-sm text-gray-600 text-center"
-            >
-              Based on authentic dates from <span className="font-semibold text-orange-700">Drik Panchang</span>
-            </motion.p>
+                    {/* Subheadline */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="text-xl lg:text-2xl text-gray-600 leading-relaxed"
+                    >
+                      हिंदी और मराठी त्योहार
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="text-lg text-gray-500 leading-relaxed max-w-2xl"
+                    >
+                      Explore authentic festivals, traditional recipes, celebration guides, and the cultural significance of India's most cherished holidays.
+                    </motion.p>
+
+                    {/* CTA Buttons */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="flex flex-wrap gap-4 pt-4"
+                    >
+                      <Button
+                        onClick={handleEnter}
+                        size="lg"
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all flex items-center gap-2"
+                      >
+                        View Calendar
+                        <ArrowRight className="w-5 h-5" />
+                      </Button>
+                      <Button
+                        onClick={handleEnter}
+                        size="lg"
+                        variant="outline"
+                        className="border-2 border-gray-300 hover:border-emerald-500 text-gray-700 hover:text-emerald-600 px-8 py-6 rounded-xl text-lg font-semibold transition-all"
+                      >
+                        Browse Festivals
+                      </Button>
+                    </motion.div>
+
+                    {/* Stats */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7 }}
+                      className="flex flex-wrap gap-8 pt-8 border-t border-gray-200"
+                    >
+                      {[
+                        { number: '47+', label: 'Festivals' },
+                        { number: '2', label: 'Countries' },
+                        { number: '100%', label: 'Authentic' }
+                      ].map((stat, i) => (
+                        <div key={i} className="flex flex-col">
+                          <span className="text-3xl font-bold text-gray-900">{stat.number}</span>
+                          <span className="text-sm text-gray-500 mt-1">{stat.label}</span>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Right: Featured Festival Cards */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="space-y-6"
+                  >
+                    {featuredFestivals.map((festival: any, index: number) => (
+                      <motion.div
+                        key={festival.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                        whileHover={{ scale: 1.02, y: -5 }}
+                        className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100"
+                      >
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={festival.heroImage}
+                            alt={festival.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <span className="inline-block px-3 py-1 bg-emerald-600 text-white text-xs font-semibold rounded-full mb-2">
+                              {festival.region || 'Pan-Indian'}
+                            </span>
+                            <h3 className="text-xl font-bold text-white">{festival.name}</h3>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
+                            {festival.tagline || festival.overview?.shortDescription || ''}
+                          </p>
+                          <div className="mt-4 flex items-center justify-between">
+                            <span className="text-xs text-gray-500 font-medium">
+                              {new Date(festival.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            </span>
+                            <button
+                              onClick={handleEnter}
+                              className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+                            >
+                              Read more
+                              <ArrowRight className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </section>
           </div>
-
-          {/* Bottom Gradient Decoration */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-orange-100 to-transparent pointer-events-none" />
-          
-          {/* Top Gradient Decoration */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-orange-100 to-transparent pointer-events-none" />
         </motion.div>
       )}
     </AnimatePresence>

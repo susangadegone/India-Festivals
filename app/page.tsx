@@ -73,30 +73,61 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-sage-50 app-container relative">
-      {/* Clean, Minimal Header - Blogzan Style */}
+    <div className="min-h-screen bg-white app-container relative">
+      {/* Modern Blog-Style Header */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-sage-200/50 shadow-sm"
+        className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex items-center justify-between h-16">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <div className="flex items-center justify-between h-20">
             {/* Logo/Brand */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="flex items-center gap-3"
+            <motion.button
+              onClick={() => setActiveTab('calendar')}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-4 group"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-sage-600 rounded-lg flex items-center justify-center">
-                <span className="text-xl">📅</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-sage-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+                <span className="text-2xl">📅</span>
               </div>
-              <div>
-                <h1 className="text-xl font-semibold text-gray-900">Festival Calendar</h1>
-                <p className="text-xs text-gray-500">Cultural Celebrations</p>
+              <div className="text-left">
+                <h1 className="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">Festival Calendar</h1>
+                <p className="text-xs text-gray-500">Cultural Heritage</p>
               </div>
-            </motion.div>
+            </motion.button>
+            
+            {/* Navigation Tabs */}
+            <nav className="hidden md:flex items-center gap-1">
+              {tabs.map((tab) => {
+                const Icon = tab.icon
+                const isActive = activeTab === tab.id
+                return (
+                  <motion.button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 ${
+                      isActive 
+                        ? 'text-emerald-600 bg-emerald-50' 
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavTab"
+                        className="absolute inset-0 bg-emerald-50 rounded-lg"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <Icon className={`w-4 h-4 relative z-10 ${isActive ? 'text-emerald-600' : 'text-gray-500'}`} />
+                    <span className="relative z-10">{tab.label}</span>
+                  </motion.button>
+                )
+              })}
+            </nav>
             
             {/* Country Selector */}
             <div className="relative">
@@ -104,10 +135,10 @@ export default function HomePage() {
                 onClick={() => setShowCountryMenu(!showCountryMenu)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sage-50 hover:bg-sage-100 border border-sage-200 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors"
               >
                 <Globe className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-medium text-gray-700">{currentCountry.flag} {currentCountry.name}</span>
+                <span className="text-sm font-medium text-gray-700">{currentCountry.flag}</span>
                 <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showCountryMenu ? 'rotate-180' : ''}`} />
               </motion.button>
 
@@ -118,7 +149,7 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-sage-200 overflow-hidden"
+                    className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
                   >
                     {countries.map((country) => (
                       <button
@@ -127,8 +158,8 @@ export default function HomePage() {
                           setSelectedCountry(country.id)
                           setShowCountryMenu(false)
                         }}
-                        className={`w-full px-4 py-3 text-left hover:bg-sage-50 transition-colors flex items-center gap-3 ${
-                          selectedCountry === country.id ? 'bg-sage-50 border-l-2 border-emerald-500' : ''
+                        className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center gap-3 ${
+                          selectedCountry === country.id ? 'bg-emerald-50 border-l-2 border-emerald-500' : ''
                         }`}
                       >
                         <span className="text-xl">{country.flag}</span>
@@ -154,7 +185,7 @@ export default function HomePage() {
       </motion.header>
 
       {/* Main Content - Blog Style Layout */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-8">
+      <main className="container mx-auto px-6 lg:px-8 max-w-7xl py-12 lg:py-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeTab}-${selectedCountry}`}
@@ -162,21 +193,21 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="min-h-[calc(100vh-200px)]"
+            className="min-h-[calc(100vh-300px)]"
           >
             {renderContent()}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Minimal Bottom Navigation */}
+      {/* Mobile Bottom Navigation */}
       <motion.nav 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t border-sage-200/50 shadow-lg"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-t border-gray-100 shadow-xl"
       >
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-          <div className="flex justify-around items-center h-16">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex justify-around items-center h-20">
             {tabs.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.id
@@ -187,32 +218,25 @@ export default function HomePage() {
                   onClick={() => setActiveTab(tab.id)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative flex flex-col items-center justify-center py-2 px-4 rounded-lg transition-all duration-200"
+                  className="relative flex flex-col items-center justify-center py-2 px-4 rounded-xl transition-all duration-200"
                 >
                   {isActive && (
                     <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-emerald-50 rounded-lg"
+                      layoutId="activeMobileTab"
+                      className="absolute inset-0 bg-emerald-50 rounded-xl"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                  <div className="relative z-10">
-                    <Icon className={`w-5 h-5 mb-1 transition-colors ${
+                  <div className="relative z-10 flex flex-col items-center gap-1">
+                    <Icon className={`w-6 h-6 transition-colors ${
                       isActive ? 'text-emerald-600' : 'text-gray-400'
                     }`} />
-                    <span className={`text-xs font-medium ${
+                    <span className={`text-xs font-semibold ${
                       isActive ? 'text-emerald-700' : 'text-gray-500'
                     }`}>
                       {tab.label}
                     </span>
                   </div>
-                  {isActive && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-emerald-500 rounded-full"
-                    />
-                  )}
                 </motion.button>
               )
             })}
