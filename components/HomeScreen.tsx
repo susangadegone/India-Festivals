@@ -70,7 +70,7 @@ export default function HomeScreen({ onFestivalClick }: { onFestivalClick?: (fes
   if (selectedFestival) {
     return (
       <FestivalDetail 
-        festival={selectedFestival} 
+        festival={selectedFestival as any} 
         onClose={() => setSelectedFestival(null)}
       />
     )

@@ -7,13 +7,15 @@ import { Button } from '@/components/ui/button'
 import { User, Camera, Palette, Share2, Heart, Download } from 'lucide-react'
 import { getRandomSaiBabaQuote } from '@/lib/utils'
 import saiBabaQuotes from '@/data/sai-baba-quotes.json'
+import thursdayBlessings from '@/data/thursday-blessings.json'
 import PanchangDateSync from './PanchangDateSync'
 
 export default function Profile() {
   const [selectedTheme, setSelectedTheme] = useState('saffron')
   const [profileImage, setProfileImage] = useState('/placeholder-avatar.jpg')
-  const [currentQuote, setCurrentQuote] = useState(saiBabaQuotes[0])
+  const [currentQuote, setCurrentQuote] = useState<string>(typeof saiBabaQuotes[0] === 'string' ? saiBabaQuotes[0] : 'Have faith and patience.')
   const [isThursday, setIsThursday] = useState(false)
+  const [thursdayBlessing, setThursdayBlessing] = useState<string>('')
 
   const themes = [
     { id: 'saffron', name: 'Saffron', color: 'bg-saffron-500', text: 'text-saffron-800' },
@@ -28,6 +30,9 @@ export default function Profile() {
     setIsThursday(dayOfWeek === 4) // Thursday is day 4
 
     if (dayOfWeek === 4) {
+      const dayOfMonth = today.getDate()
+      const blessing = Array.isArray(thursdayBlessings) ? thursdayBlessings[dayOfMonth % thursdayBlessings.length] : ''
+      setThursdayBlessing(blessing)
       setCurrentQuote(getRandomSaiBabaQuote(saiBabaQuotes))
     }
   }, [])
@@ -47,12 +52,12 @@ export default function Profile() {
     if (navigator.share) {
       navigator.share({
         title: 'Sai Baba Thursday Blessing',
-        text: currentQuote.quote,
+        text: currentQuote,
         url: window.location.href,
       })
     } else {
       // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(currentQuote.quote)
+      navigator.clipboard.writeText(currentQuote)
       alert('Quote copied to clipboard!')
     }
   }
@@ -180,12 +185,14 @@ export default function Profile() {
                 </div>
                 
                 <blockquote className="text-gold-700 italic text-center mb-4">
-                  "{currentQuote.quote}"
+                  "{currentQuote}"
                 </blockquote>
                 
-                <p className="text-gold-600 text-sm text-center mb-4">
-                  {currentQuote.blessing}
-                </p>
+                {isThursday && thursdayBlessing && (
+                  <p className="text-gold-600 text-sm text-center mb-4">
+                    {thursdayBlessing}
+                  </p>
+                )}
                 
                 <div className="flex gap-2 justify-center">
                   <Button

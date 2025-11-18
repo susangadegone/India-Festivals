@@ -118,7 +118,7 @@ export default function HomePage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-6 md:py-12 lg:py-16 safe-area-inset-x">
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${activeTab}-${selectedCountry}`}
+            key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

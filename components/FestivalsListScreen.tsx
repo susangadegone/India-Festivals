@@ -44,7 +44,7 @@ export default function FestivalsListScreen() {
   if (selectedFestival) {
     return (
       <FestivalDetail 
-        festival={selectedFestival} 
+        festival={selectedFestival as any} 
         onClose={() => setSelectedFestival(null)}
       />
     )

@@ -1,11 +1,11 @@
 {
   "name": "India Festival Calendar",
   "short_name": "Festivals",
-  "description": "Discover authentic Hindi and Marathi festivals with traditional recipes and celebration guides",
+  "description": "Discover authentic Hindi and Marathi festivals with traditional recipes, celebration guides, Sai Baba quotes, and Thursday blessings",
   "start_url": "/Hindu-Marati-Festivals-App-1/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#f2730a",
+  "background_color": "#FFF8E7",
+  "theme_color": "#E17735",
   "orientation": "portrait-primary",
   "icons": [
     {
