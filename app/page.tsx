@@ -220,7 +220,7 @@ export default function HomePage() {
                   whileTap={{ scale: 0.95 }}
                   className="relative flex flex-col items-center justify-center py-2 px-4 rounded-xl transition-all duration-200"
                 >
-                  {                      isActive && (
+                  {isActive && (
                       <motion.div
                         layoutId="activeMobileTab"
                         className="absolute inset-0 bg-gradient-to-r from-saffron-400 to-rose-400 rounded-xl"
