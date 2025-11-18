@@ -226,7 +226,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
   }
 
   return (
-    <div className="space-y-6 pb-6">
+    <div className="space-y-4 md:space-y-6 pb-6 touch-manipulation">
       {/* Modern Search and Filter Bar */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

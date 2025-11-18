@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useState, useRef } from 'react'
-import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe, Star, Zap } from 'lucide-react'
+import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
 
@@ -296,36 +296,6 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   </motion.div>
                 </motion.div>
 
-                {/* Stats */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="flex flex-wrap justify-center gap-12 pt-16 mt-16 border-t border-gray-200"
-                >
-                  {[
-                    { number: '47+', label: 'Festivals', icon: Star },
-                    { number: '100%', label: 'Authentic', icon: Heart },
-                    { number: '∞', label: 'Traditions', icon: Sparkles },
-                  ].map((stat, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
-                      whileHover={{ scale: 1.1 }}
-                      className="flex flex-col items-center gap-2"
-                    >
-                      <stat.icon className="w-8 h-8 text-saffron-500" />
-                      <span className="text-5xl font-black bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">
-                        {stat.number}
-                      </span>
-                      <span className="text-sm text-gray-600 font-semibold uppercase tracking-wider">
-                        {stat.label}
-                      </span>
-                    </motion.div>
-                  ))}
-                </motion.div>
               </div>
 
               {/* Interactive Festival Grid */}

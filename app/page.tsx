@@ -72,33 +72,35 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white app-container relative">
-      {/* Modern Blog-Style Header */}
+    <div className="min-h-screen bg-white app-container relative pb-20 md:pb-0 safe-area-inset">
+      {/* Mobile App Style Header */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm"
+        className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm safe-top"
       >
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo/Brand */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo/Brand - Mobile optimized */}
             <motion.button
               onClick={() => setActiveTab('calendar')}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-4 group"
+              className="flex items-center gap-2 md:gap-4 group touch-manipulation"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                <span className="text-2xl">📅</span>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg group-active:scale-95 transition-transform">
+                <span className="text-xl md:text-2xl">📅</span>
               </div>
-              <div className="text-left">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent group-hover:from-saffron-700 group-hover:to-rose-700 transition-all">Festival Calendar</h1>
+              <div className="text-left hidden sm:block">
+                <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent">
+                  Festival Calendar
+                </h1>
                 <p className="text-xs text-gray-600 font-medium">Cultural Heritage</p>
               </div>
             </motion.button>
             
-            {/* Navigation Tabs */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Desktop Navigation Tabs */}
+            <nav className="hidden lg:flex items-center gap-1">
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isActive = activeTab === tab.id
@@ -127,13 +129,12 @@ export default function HomePage() {
                 )
               })}
             </nav>
-            
           </div>
         </div>
       </motion.header>
 
-      {/* Main Content - Blog Style Layout */}
-      <main className="container mx-auto px-6 lg:px-8 max-w-7xl py-12 lg:py-16">
+      {/* Main Content - Mobile App Style */}
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-6 md:py-12 lg:py-16 safe-area-inset-x">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeTab}-${selectedCountry}`}
@@ -141,20 +142,20 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="min-h-[calc(100vh-300px)]"
+            className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-300px)] pb-4"
           >
             {renderContent()}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile Bottom Navigation - Always Visible */}
       <motion.nav 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-t border-gray-100 shadow-xl"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-t border-gray-200 shadow-2xl safe-bottom"
       >
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-2 max-w-7xl">
           <div className="flex justify-around items-center h-20">
             {tabs.map((tab) => {
               const Icon = tab.icon
@@ -164,27 +165,34 @@ export default function HomePage() {
                 <motion.button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative flex flex-col items-center justify-center py-2 px-4 rounded-xl transition-all duration-200"
+                  whileTap={{ scale: 0.9 }}
+                  className="relative flex flex-col items-center justify-center py-2 px-3 flex-1 touch-manipulation min-h-[60px]"
+                  aria-label={tab.label}
                 >
                   {isActive && (
-                      <motion.div
-                        layoutId="activeMobileTab"
-                        className="absolute inset-0 bg-gradient-to-r from-saffron-400 to-rose-400 rounded-xl"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                    <div className="relative z-10 flex flex-col items-center gap-1">
-                      <Icon className={`w-6 h-6 transition-colors ${
-                        isActive ? 'text-white' : 'text-gray-400'
-                      }`} />
-                      <span className={`text-xs font-semibold ${
-                        isActive ? 'text-white' : 'text-gray-500'
-                      }`}>
+                    <motion.div
+                      layoutId="activeMobileTab"
+                      className="absolute inset-0 bg-gradient-to-r from-saffron-500 via-rose-500 to-pink-500 rounded-2xl mx-1"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <div className="relative z-10 flex flex-col items-center gap-1">
+                    <Icon className={`w-6 h-6 transition-all duration-200 ${
+                      isActive ? 'text-white scale-110' : 'text-gray-400'
+                    }`} />
+                    <span className={`text-[10px] font-bold transition-all duration-200 ${
+                      isActive ? 'text-white' : 'text-gray-500'
+                    }`}>
                       {tab.label}
                     </span>
                   </div>
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobileIndicator"
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full"
+                      transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                    />
+                  )}
                 </motion.button>
               )
             })}

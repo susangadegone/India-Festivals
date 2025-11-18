@@ -1,0 +1,36 @@
+{
+  "name": "India Festival Calendar",
+  "short_name": "Festivals",
+  "description": "Discover authentic Hindi and Marathi festivals with traditional recipes and celebration guides",
+  "start_url": "/Hindu-Marati-Festivals-App-1/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f2730a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Hindu-Marati-Festivals-App-1/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Hindu-Marati-Festivals-App-1/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "culture", "reference"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Calendar",
+      "short_name": "Calendar",
+      "description": "View festival calendar",
+      "url": "/Hindu-Marati-Festivals-App-1/#calendar",
+      "icons": [{ "src": "/Hindu-Marati-Festivals-App-1/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
+
