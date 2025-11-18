@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import FestivalDetail from './FestivalDetail'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
-import japaneseFestivalsData from '@/data/japanese-festivals.json'
 import type { Country } from '@/lib/countries'
 
 interface Festival {
@@ -48,9 +47,6 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
 
   // Load festivals based on selected country
   const festivals = useMemo(() => {
-    if (country === 'japan') {
-      return japaneseFestivalsData as Festival[]
-    }
     return comprehensiveFestivalsData as Festival[]
   }, [country])
 
@@ -60,10 +56,8 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
   ]
 
   const categories = ['all', 'religious', 'cultural', 'harvest', 'national']
-  // Regions depend on country
-  const regions = country === 'japan' 
-    ? ['all', 'Japanese'] 
-    : ['all', 'Marathi', 'Hindi', 'Pan-Indian']
+  // Regions for India
+  const regions = ['all', 'Marathi', 'Hindi', 'Pan-Indian']
 
   const toggleFavorite = (festivalId: string) => {
     const newFavorites = new Set(favorites)

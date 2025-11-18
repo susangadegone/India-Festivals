@@ -8,16 +8,15 @@ import FavoritesView from '@/components/FavoritesView'
 import HindiFestivals from '@/components/HindiFestivals'
 import MarathiFestivals from '@/components/MarathiFestivals'
 import Profile from '@/components/Profile'
-import { Calendar, Heart, Home, User, Sparkles, Globe, ChevronDown } from 'lucide-react'
-import { countries, type Country, getCountryConfig } from '@/lib/countries'
+import { Calendar, Heart, Home, User, Sparkles } from 'lucide-react'
+import { type Country, getCountryConfig } from '@/lib/countries'
 
 export default function HomePage() {
   const [showLanding, setShowLanding] = useState(true)
   const [activeTab, setActiveTab] = useState('calendar')
   const [isLoaded, setIsLoaded] = useState(false)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
-  const [selectedCountry, setSelectedCountry] = useState<Country>('india')
-  const [showCountryMenu, setShowCountryMenu] = useState(false)
+  const [selectedCountry] = useState<Country>('india')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -129,57 +128,6 @@ export default function HomePage() {
               })}
             </nav>
             
-            {/* Country Selector */}
-            <div className="relative">
-              <motion.button
-                onClick={() => setShowCountryMenu(!showCountryMenu)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors"
-              >
-                <Globe className="w-4 h-4 text-saffron-600" />
-                <span className="text-sm font-medium text-gray-700">{currentCountry.flag}</span>
-                <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showCountryMenu ? 'rotate-180' : ''}`} />
-              </motion.button>
-
-              {/* Country Dropdown */}
-              <AnimatePresence>
-                {showCountryMenu && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
-                  >
-                    {countries.map((country) => (
-                      <button
-                        key={country.id}
-                        onClick={() => {
-                          setSelectedCountry(country.id)
-                          setShowCountryMenu(false)
-                        }}
-                        className={`w-full px-4 py-3 text-left hover:bg-saffron-50 transition-colors flex items-center gap-3 ${
-                          selectedCountry === country.id ? 'bg-gradient-to-r from-saffron-50 to-rose-50 border-l-4 border-saffron-500' : ''
-                        }`}
-                      >
-                        <span className="text-xl">{country.flag}</span>
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{country.name}</div>
-                          <div className="text-xs text-gray-500">{country.nativeName}</div>
-                        </div>
-                        {selectedCountry === country.id && (
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className="ml-auto w-2 h-2 bg-saffron-500 rounded-full"
-                          />
-                        )}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
         </div>
       </motion.header>
@@ -244,13 +192,6 @@ export default function HomePage() {
         </div>
       </motion.nav>
 
-      {/* Click outside to close country menu */}
-      {showCountryMenu && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setShowCountryMenu(false)}
-        />
-      )}
     </div>
   )
 }

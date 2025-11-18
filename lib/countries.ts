@@ -1,5 +1,5 @@
 // Country and tradition configurations
-export type Country = 'india' | 'japan'
+export type Country = 'india'
 
 export interface CountryConfig {
   id: Country
@@ -20,15 +20,6 @@ export const countries: CountryConfig[] = [
     festivalsDataPath: '/data/comprehensive-festivals.json',
     color: '#10B981',
     description: 'Hindu and Marathi festivals celebrating India\'s rich cultural heritage'
-  },
-  {
-    id: 'japan',
-    name: 'Japan',
-    nativeName: '日本',
-    flag: '🇯🇵',
-    festivalsDataPath: '/data/japanese-festivals.json',
-    color: '#10B981',
-    description: 'Traditional Japanese festivals and cultural celebrations'
   }
 ]
 

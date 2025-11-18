@@ -6,7 +6,6 @@ import { Heart, Calendar, ChefHat } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import FestivalDetail from './FestivalDetail'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
-import japaneseFestivalsData from '@/data/japanese-festivals.json'
 
 interface Festival {
   id: string
@@ -34,9 +33,7 @@ export default function FavoritesView({ favorites, onToggleFavorite, country = '
   const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null)
   
   // Load festivals based on selected country
-  const festivals = (country === 'japan' 
-    ? japaneseFestivalsData
-    : comprehensiveFestivalsData) as Festival[]
+  const festivals = comprehensiveFestivalsData as Festival[]
   const favoriteFestivals = festivals.filter(f => favorites.has(f.id))
 
   if (favoriteFestivals.length === 0) {
