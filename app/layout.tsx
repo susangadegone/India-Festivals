@@ -26,9 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen festival-gradient">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   )
