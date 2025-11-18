@@ -108,12 +108,12 @@ export default function MarathiFestivals() {
                 </div>
                 <div className="absolute bottom-3 left-3 right-3">
                   <h4 className="font-bold text-white text-xl drop-shadow-lg mb-1">
-                    {festival.name}
+                      {festival.name}
                   </h4>
                   <p className="text-sm text-yellow-100 drop-shadow font-marathi">
                     {festival.nameDevanagari}
-                  </p>
-                </div>
+                    </p>
+                  </div>
               </div>
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-3 flex-wrap">
@@ -151,7 +151,7 @@ export default function MarathiFestivals() {
                   )}
                   <span className="px-3 py-1.5 rounded-lg text-xs font-bold border-2 bg-yellow-50 text-yellow-700 border-yellow-300">
                     {festival.category}
-                  </span>
+                    </span>
                 </div>
                 {festival.primary_states && festival.primary_states.length > 0 && (
                   <div className="flex items-center gap-1 mb-3 flex-wrap">
@@ -161,7 +161,7 @@ export default function MarathiFestivals() {
                       {festival.primary_states.length > 3 && ` +${festival.primary_states.length - 3}`}
                     </span>
                   </div>
-                )}
+                  )}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs text-orange-600 font-semibold flex items-center gap-1">
                     🍽️ {festival.recipes.length} recipes

@@ -16,7 +16,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoaded(true)
+    setIsLoaded(true)
     }, 100)
     return () => clearTimeout(timer)
   }, [])
@@ -96,7 +96,7 @@ export default function HomePage() {
                         ? 'text-white bg-gradient-to-r from-[#E17735] to-[#842B2B] shadow-lg' 
                         : 'text-gray-600 hover:text-[#E17735] hover:bg-[#FFF8E7]'
                     }`}
-                  >
+                >
                     {isActive && (
                       <motion.div
                         layoutId="activeNavTab"
@@ -150,8 +150,8 @@ export default function HomePage() {
                   className="relative flex flex-col items-center justify-center py-2 px-3 flex-1 touch-manipulation min-h-[60px]"
                   aria-label={tab.label}
                 >
-                  {isActive && (
-                    <motion.div
+                    {isActive && (
+                      <motion.div
                       layoutId="activeMobileTab"
                       className="absolute inset-0 bg-gradient-to-r from-[#E17735] to-[#842B2B] rounded-2xl mx-1"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -163,9 +163,9 @@ export default function HomePage() {
                     }`} />
                     <span className={`text-[10px] font-bold transition-all duration-200 ${
                       isActive ? 'text-white' : 'text-gray-500'
-                    }`}>
-                      {tab.label}
-                    </span>
+                  }`}>
+                    {tab.label}
+                  </span>
                   </div>
                   {isActive && (
                     <motion.div
