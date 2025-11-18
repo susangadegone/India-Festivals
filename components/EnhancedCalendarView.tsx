@@ -241,18 +241,18 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
       >
         {/* Search Input */}
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-saffron-500" />
           <input
             type="text"
             placeholder="Search festivals by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-12 py-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all shadow-sm hover:shadow-md"
+            className="w-full pl-12 pr-12 py-4 bg-white border-2 border-saffron-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 transition-all shadow-sm hover:shadow-lg hover:border-saffron-300"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-saffron-600 hover:bg-saffron-50 rounded-lg transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -271,7 +271,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
                   filterCategory === category
                     ? 'bg-gradient-to-r ' + getCategoryGradient(category) + ' text-white shadow-lg scale-105'
-                    : 'bg-white border-2 border-gray-100 text-gray-700 hover:border-emerald-200 hover:shadow-md'
+                    : 'bg-white border-2 border-gray-100 text-gray-700 hover:border-saffron-300 hover:shadow-md hover:bg-saffron-50'
                 }`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -311,12 +311,12 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
             </button>
             
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-gray-900 mb-1" style={{ fontFamily: 'Georgia, serif' }}>
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-saffron-600 via-rose-600 to-blue-600 bg-clip-text text-transparent mb-1" style={{ fontFamily: 'Georgia, serif' }}>
                 {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
               </h3>
               <button
                 onClick={goToToday}
-                className="text-sm text-emerald-600 hover:text-emerald-700 font-semibold hover:underline inline-flex items-center gap-1"
+                className="text-sm text-saffron-600 hover:text-saffron-700 font-bold hover:underline inline-flex items-center gap-1 bg-saffron-50 px-3 py-1 rounded-full"
               >
                 Jump to Today
               </button>
@@ -343,7 +343,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-gradient-to-br from-emerald-500 to-sage-600 p-4 text-center text-sm font-semibold text-white shadow-sm"
+                className="bg-gradient-to-br from-saffron-500 via-rose-500 to-blue-500 p-4 text-center text-sm font-bold text-white shadow-md"
               >
                 {day}
               </motion.div>
@@ -366,12 +366,12 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                   transition={{ delay: index * 0.01 }}
                   whileHover={{ scale: 1.02 }}
                   className={`bg-white p-2 min-h-[100px] cursor-pointer transition-all ${
-                    isTodayDate ? 'bg-gradient-to-br from-emerald-50 to-sage-50 ring-2 ring-emerald-500 ring-inset shadow-lg' : 'hover:bg-gray-50'
+                    isTodayDate ? 'bg-gradient-to-br from-saffron-100 via-rose-100 to-blue-100 ring-2 ring-saffron-500 ring-inset shadow-lg' : 'hover:bg-saffron-50'
                   }`}
                   onClick={() => dayFestivals.length > 0 && setSelectedFestival(dayFestivals[0])}
                 >
                   <div className={`text-sm font-semibold mb-2 flex items-center justify-between ${
-                    isTodayDate ? 'text-emerald-700 font-bold text-lg' : 'text-gray-700'
+                    isTodayDate ? 'text-saffron-700 font-bold text-lg' : 'text-gray-700'
                   }`}>
                     <span>{day}</span>
                     {isTodayDate && (
@@ -433,7 +433,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
         >
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-3" style={{ fontFamily: 'Georgia, serif' }}>
-              <span className="bg-gradient-to-r from-emerald-600 via-sage-600 to-mint-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-saffron-600 via-rose-600 via-blue-600 to-teal-600 bg-clip-text text-transparent">
                 {monthFestivals.length} Festival{monthFestivals.length !== 1 ? 's' : ''} This Month
               </span>
             </h3>
@@ -450,7 +450,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                 className="cursor-pointer group"
                 onClick={() => setSelectedFestival(festival)}
               >
-                <Card className="overflow-hidden border border-gray-200 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 bg-white rounded-2xl group">
+                <Card className="overflow-hidden border-2 border-gray-200 hover:border-saffron-400 hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl group hover:scale-[1.02]">
                   <div className="relative h-56 overflow-hidden">
                     <img 
                       src={festival.heroImage} 
@@ -488,7 +488,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                   <CardContent className="p-5">
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
                       <div className="flex items-center gap-1">
-                        <CalendarIcon className="w-4 h-4 text-emerald-600" />
+                        <CalendarIcon className="w-4 h-4 text-saffron-600" />
                         <span className="text-sm text-gray-900 font-semibold">
                           {new Date(festival.date).toLocaleDateString('en-US', { 
                             month: 'long', 
@@ -504,7 +504,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                       {festival.importance && (
                         <span className={`text-xs px-2 py-1 rounded-full font-semibold ${
                           festival.importance === 'Very High' ? 'bg-red-100 text-red-700' :
-                          festival.importance === 'High' ? 'bg-emerald-100 text-emerald-700' :
+                          festival.importance === 'High' ? 'bg-rose-100 text-rose-700' :
                           'bg-yellow-100 text-yellow-700'
                         }`}>
                           {festival.importance}
@@ -532,7 +532,7 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
                       </div>
                     )}
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                      <span className="text-xs text-saffron-600 font-bold flex items-center gap-1 bg-saffron-50 px-2 py-1 rounded-full">
                         🍽️ {festival.recipes.length} recipes
                       </span>
                     </div>

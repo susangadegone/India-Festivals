@@ -89,12 +89,12 @@ export default function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-4 group"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-sage-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-saffron-400 via-rose-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
                 <span className="text-2xl">📅</span>
               </div>
               <div className="text-left">
-                <h1 className="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">Festival Calendar</h1>
-                <p className="text-xs text-gray-500">Cultural Heritage</p>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-saffron-600 to-rose-600 bg-clip-text text-transparent group-hover:from-saffron-700 group-hover:to-rose-700 transition-all">Festival Calendar</h1>
+                <p className="text-xs text-gray-600 font-medium">Cultural Heritage</p>
               </div>
             </motion.button>
             
@@ -109,20 +109,20 @@ export default function HomePage() {
                     onClick={() => setActiveTab(tab.id)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`relative px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 ${
+                    className={`relative px-4 py-2 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 ${
                       isActive 
-                        ? 'text-emerald-600 bg-emerald-50' 
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-white bg-gradient-to-r from-saffron-500 to-rose-500 shadow-lg' 
+                        : 'text-gray-600 hover:text-saffron-600 hover:bg-saffron-50'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeNavTab"
-                        className="absolute inset-0 bg-emerald-50 rounded-lg"
+                        className="absolute inset-0 bg-gradient-to-r from-saffron-500 to-rose-500 rounded-lg"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
-                    <Icon className={`w-4 h-4 relative z-10 ${isActive ? 'text-emerald-600' : 'text-gray-500'}`} />
+                    <Icon className={`w-4 h-4 relative z-10 ${isActive ? 'text-white' : 'text-gray-500'}`} />
                     <span className="relative z-10">{tab.label}</span>
                   </motion.button>
                 )
@@ -137,7 +137,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors"
               >
-                <Globe className="w-4 h-4 text-emerald-600" />
+                <Globe className="w-4 h-4 text-saffron-600" />
                 <span className="text-sm font-medium text-gray-700">{currentCountry.flag}</span>
                 <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showCountryMenu ? 'rotate-180' : ''}`} />
               </motion.button>
@@ -158,8 +158,8 @@ export default function HomePage() {
                           setSelectedCountry(country.id)
                           setShowCountryMenu(false)
                         }}
-                        className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center gap-3 ${
-                          selectedCountry === country.id ? 'bg-emerald-50 border-l-2 border-emerald-500' : ''
+                        className={`w-full px-4 py-3 text-left hover:bg-saffron-50 transition-colors flex items-center gap-3 ${
+                          selectedCountry === country.id ? 'bg-gradient-to-r from-saffron-50 to-rose-50 border-l-4 border-saffron-500' : ''
                         }`}
                       >
                         <span className="text-xl">{country.flag}</span>
@@ -171,7 +171,7 @@ export default function HomePage() {
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="ml-auto w-2 h-2 bg-emerald-500 rounded-full"
+                            className="ml-auto w-2 h-2 bg-saffron-500 rounded-full"
                           />
                         )}
                       </button>
@@ -220,20 +220,20 @@ export default function HomePage() {
                   whileTap={{ scale: 0.95 }}
                   className="relative flex flex-col items-center justify-center py-2 px-4 rounded-xl transition-all duration-200"
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeMobileTab"
-                      className="absolute inset-0 bg-emerald-50 rounded-xl"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <div className="relative z-10 flex flex-col items-center gap-1">
-                    <Icon className={`w-6 h-6 transition-colors ${
-                      isActive ? 'text-emerald-600' : 'text-gray-400'
-                    }`} />
-                    <span className={`text-xs font-semibold ${
-                      isActive ? 'text-emerald-700' : 'text-gray-500'
-                    }`}>
+                  {                      isActive && (
+                      <motion.div
+                        layoutId="activeMobileTab"
+                        className="absolute inset-0 bg-gradient-to-r from-saffron-400 to-rose-400 rounded-xl"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <div className="relative z-10 flex flex-col items-center gap-1">
+                      <Icon className={`w-6 h-6 transition-colors ${
+                        isActive ? 'text-white' : 'text-gray-400'
+                      }`} />
+                      <span className={`text-xs font-semibold ${
+                        isActive ? 'text-white' : 'text-gray-500'
+                      }`}>
                       {tab.label}
                     </span>
                   </div>
