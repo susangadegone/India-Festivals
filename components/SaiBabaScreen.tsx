@@ -50,7 +50,7 @@ export default function SaiBabaScreen() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="bg-gradient-to-br from-[#E17735] via-[#842B2B] to-[#1E2A38] border-0 shadow-2xl rounded-3xl overflow-hidden">
+          <Card className="bg-gradient-to-br from-saffron-500 via-rose-500 to-teal-600 border-0 shadow-2xl rounded-3xl overflow-hidden">
             <CardContent className="p-6 md:p-8">
               <div className="flex items-start gap-4">
                 <div className="text-5xl flex-shrink-0">🌞</div>
@@ -78,17 +78,17 @@ export default function SaiBabaScreen() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <Card className="bg-gradient-to-br from-[#FFF8E7] via-white to-[#FFF8E7] border-2 border-[#C8A15A]/50 shadow-xl rounded-3xl">
+        <Card className="bg-gradient-to-br from-rose-50 via-white to-teal-50 border-2 border-rose-200 shadow-xl rounded-3xl">
           <CardContent className="p-6 md:p-8">
             <div className="text-center space-y-4">
-              <Sparkles className="w-8 h-8 text-[#E17735] mx-auto" />
-              <h3 className="text-xl font-bold text-[#1E2A38]">
+              <Sparkles className="w-8 h-8 text-saffron-600 mx-auto" />
+              <h3 className="text-xl font-bold text-gray-900">
                 Quote of the Day
               </h3>
-              <p className="text-2xl md:text-3xl text-[#842B2B] leading-relaxed italic font-medium">
+              <p className="text-2xl md:text-3xl text-rose-600 leading-relaxed italic font-medium">
                 "{quoteOfTheDay}"
               </p>
-              <p className="text-sm text-[#842B2B]/70 font-semibold">— Sai Baba</p>
+              <p className="text-sm text-saffron-700 font-semibold">— Sai Baba</p>
             </div>
           </CardContent>
         </Card>
@@ -103,12 +103,12 @@ export default function SaiBabaScreen() {
       >
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Heart className="w-6 h-6 text-[#E17735]" />
+            <Heart className="w-6 h-6 text-saffron-600" />
             All Blessings
           </h2>
           <button
             onClick={() => setShowAllQuotes(!showAllQuotes)}
-            className="text-[#E17735] font-semibold text-sm px-4 py-2 rounded-full bg-[#FFF8E7] hover:bg-[#C8A15A]/20 transition-colors touch-manipulation"
+            className="text-saffron-600 font-semibold text-sm px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 transition-colors touch-manipulation"
           >
             {showAllQuotes ? 'Show Less' : 'Show All'}
           </button>
