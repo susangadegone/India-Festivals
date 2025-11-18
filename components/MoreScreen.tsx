@@ -24,27 +24,27 @@ export default function MoreScreen() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="bg-gradient-to-br from-[#FFF8E7] to-white border border-[#C8A15A]/30 shadow-lg rounded-3xl">
+        <Card className="bg-gradient-to-br from-rose-50 to-teal-50 border border-rose-200 shadow-lg rounded-3xl">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
-              <Info className="w-6 h-6 text-[#E17735] flex-shrink-0 mt-1" />
+              <Info className="w-6 h-6 text-saffron-600 flex-shrink-0 mt-1" />
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-[#1E2A38] mb-3">About This App</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">About This App</h3>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   India Festival Calendar is a comprehensive guide to authentic Hindu and Marathi festivals. 
                   Discover traditional recipes, celebration guides, cultural significance, and Sai Baba's blessings.
                 </p>
                 <div className="space-y-2 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#E17735]" />
+                    <Calendar className="w-4 h-4 text-saffron-600" />
                     <span>47+ authentic festivals</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#E17735]" />
+                    <Sparkles className="w-4 h-4 text-saffron-600" />
                     <span>Daily Sai Baba quotes</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-[#E17735]" />
+                    <Globe className="w-4 h-4 text-saffron-600" />
                     <span>Regional traditions & celebrations</span>
                   </div>
                 </div>
@@ -88,10 +88,10 @@ export default function MoreScreen() {
         transition={{ delay: 0.4 }}
         className="text-center pt-4"
       >
-        <Card className="bg-gradient-to-br from-[#E17735]/10 to-[#842B2B]/10 border border-[#E17735]/20 rounded-3xl">
+        <Card className="bg-gradient-to-br from-saffron-50 to-rose-50 border border-saffron-200 rounded-3xl">
           <CardContent className="p-6">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Heart className="w-5 h-5 text-[#E17735]" />
+              <Heart className="w-5 h-5 text-saffron-600" />
               <p className="text-gray-700 font-medium">
                 Made with devotion
               </p>

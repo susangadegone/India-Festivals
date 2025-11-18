@@ -33,7 +33,7 @@ export const viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: 'cover' as const,
-  themeColor: '#E17735',
+  themeColor: '#f2730a',
 }
 
 export default function RootLayout({
@@ -49,7 +49,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Festival Calendar" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#E17735" />
+        <meta name="msapplication-TileColor" content="#f2730a" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
       <body className={inter.className}>
