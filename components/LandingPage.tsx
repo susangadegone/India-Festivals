@@ -235,7 +235,16 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               {/* Overlay for text readability */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-saffron-900/20 via-transparent to-rose-900/20 z-10" />
+              {/* Debug info in development */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-2 rounded text-xs z-50">
+                  Video: {videoRef.current?.readyState === 4 ? '✅ Ready' : '⏳ Loading...'} | Error: {videoError ? '❌' : '✅'}
+                </div>
+              )}
             </div>
+          )}
+          {videoError && isMounted && (
+            <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50 z-0" />
           )}
 
           {/* Animated gradient background (as fallback - behind video) */}
