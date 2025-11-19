@@ -18,7 +18,10 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   basePath: '/Hindu-Marati-Festivals-App-1',
-  assetPrefix: '/Hindu-Marati-Festivals-App-1'
+  assetPrefix: '/Hindu-Marati-Festivals-App-1',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: '/Hindu-Marati-Festivals-App-1'
+  }
 }
 
 module.exports = nextConfig
