@@ -192,24 +192,24 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               >
                 {/* Puja video with candles and offerings (primary) */}
                 <source
-                  src="/videos/puja-candles-offerings.mp4"
+                  src="/Hindu-Marati-Festivals-App-1/videos/puja-candles-offerings.mp4"
                   type="video/mp4"
                 />
                 <source
-                  src="/videos/puja-candles-offerings.mov"
+                  src="/Hindu-Marati-Festivals-App-1/videos/puja-candles-offerings.mov"
                   type="video/quicktime"
                 />
                 {/* Fallback videos */}
                 <source
-                  src="/videos/india-background.mp4"
+                  src="/Hindu-Marati-Festivals-App-1/videos/india-background.mp4"
                   type="video/mp4"
                 />
                 <source
-                  src="/videos/4391103-hd_1920_1080_25fps.mov"
+                  src="/Hindu-Marati-Festivals-App-1/videos/4391103-hd_1920_1080_25fps.mov"
                   type="video/quicktime"
                 />
                 <source
-                  src="/videos/india-background.mov"
+                  src="/Hindu-Marati-Festivals-App-1/videos/india-background.mov"
                   type="video/quicktime"
                 />
               </video>
