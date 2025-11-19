@@ -52,13 +52,96 @@ export default function HomePage() {
     return <LandingPage onEnter={handleEnterApp} />
   }
 
+  // Check if it's December (festive season)
+  const isDecember = new Date().getMonth() === 11
+  const isChristmasWeek = isDecember && new Date().getDate() >= 20
+
   return (
-    <div className="min-h-screen bg-[#FFF8E7] app-container relative pb-20 md:pb-0 safe-area-inset">
+    <div className="min-h-screen bg-[#FFF8E7] app-container relative pb-20 md:pb-0 safe-area-inset overflow-hidden">
+      {/* Festive Decorations - Floating Elements */}
+      {isDecember && (
+        <>
+          {/* Floating Diyas and Stars */}
+          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={`star-${i}`}
+                className="absolute"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 360],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                }}
+              >
+                <span className="text-2xl">✨</span>
+              </motion.div>
+            ))}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`diya-${i}`}
+                className="absolute"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -15, 0],
+                  scale: [1, 1.1, 1],
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{
+                  duration: 4 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 3,
+                }}
+              >
+                <span className="text-xl">🪔</span>
+              </motion.div>
+            ))}
+            {isChristmasWeek && [...Array(6)].map((_, i) => (
+              <motion.div
+                key={`snowflake-${i}`}
+                className="absolute"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, 100],
+                  rotate: [0, 360],
+                  opacity: [0.4, 0],
+                }}
+                transition={{
+                  duration: 5 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                }}
+              >
+                <span className="text-lg">❄️</span>
+              </motion.div>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* Mobile App Style Header */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 bg-[#FFF8E7]/95 backdrop-blur-xl border-b border-[#C8A15A]/20 shadow-sm safe-top"
+        className={`sticky top-0 z-50 backdrop-blur-xl border-b shadow-sm safe-top relative ${
+          isDecember 
+            ? 'bg-gradient-to-r from-[#FFF8E7] via-[#FFE5E5] to-[#FFF8E7] border-[#C8A15A]/30' 
+            : 'bg-[#FFF8E7]/95 border-[#C8A15A]/20'
+        }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between h-16 md:h-20">

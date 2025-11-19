@@ -92,7 +92,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
             transition={{ delay: 0.7 + index * 0.1, type: "spring" }}
             className="absolute top-4 right-4"
           >
-            <span className="inline-block px-4 py-2 bg-gradient-to-r from-saffron-400 via-rose-400 to-pink-400 text-white text-xs font-bold rounded-full shadow-xl backdrop-blur-sm">
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white text-xs font-bold rounded-full shadow-xl backdrop-blur-sm border border-white/20">
               {festival.region || 'Pan-Indian'}
             </span>
           </motion.div>
@@ -157,10 +157,37 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           className="min-h-screen bg-white relative overflow-hidden"
           onMouseMove={handleMouseMove}
         >
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50" />
+          {/* India Video Background */}
+          <div className="absolute inset-0 w-full h-full z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectFit: 'cover' }}
+            >
+              <source
+                src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4"
+                type="video/mp4"
+              />
+              {/* Fallback video options */}
+              <source
+                src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_25fps.mp4"
+                type="video/mp4"
+              />
+              {/* Fallback image if video doesn't load */}
+              <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50" />
+            </video>
+            {/* Video overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-saffron-900/30 via-transparent to-rose-900/30 z-10" />
+          </div>
+
+          {/* Animated gradient background (as fallback/overlay) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/20 via-rose-50/15 via-blue-50/15 to-teal-50/20 z-20 pointer-events-none" />
           
-          {/* Floating gradient orbs */}
+          {/* Floating gradient orbs (lighter for video background) */}
           <motion.div
             animate={{
               x: [0, 100, 0],
@@ -168,7 +195,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               scale: [1, 1.2, 1],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-saffron-300/30 to-rose-300/30 rounded-full blur-3xl"
+            className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-saffron-300/20 to-rose-300/20 rounded-full blur-3xl z-20"
           />
           <motion.div
             animate={{
@@ -177,7 +204,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               scale: [1, 1.3, 1],
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-blue-300/30 to-teal-300/30 rounded-full blur-3xl"
+            className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-blue-300/20 to-teal-300/20 rounded-full blur-3xl z-20"
           />
 
           {/* Header Navigation */}
@@ -221,15 +248,15 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           </motion.header>
 
           {/* Hero Section - Apple Style */}
-          <section className="min-h-screen flex items-center pt-32 pb-20 px-6 lg:px-8 relative">
+          <section className="min-h-screen flex items-center pt-32 pb-20 px-6 lg:px-8 relative z-30">
             <div className="max-w-7xl mx-auto w-full">
               {/* Main Hero Content */}
-              <div className="text-center mb-20">
+              <div className="text-center mb-20 relative z-30">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" }}
-                  className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-saffron-400/20 via-rose-400/20 to-blue-400/20 backdrop-blur-lg border border-saffron-200/50 rounded-full text-sm font-bold text-saffron-700 mb-8 shadow-lg"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-yellow-400/30 via-orange-400/30 to-pink-400/30 backdrop-blur-lg border border-yellow-300/50 rounded-full text-sm font-bold text-white mb-8 shadow-lg"
                 >
                   <Sparkles className="w-5 h-5 text-saffron-600" />
                   <span>Indian Cultural Heritage</span>
@@ -240,11 +267,11 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] mb-6 tracking-tight"
+                  className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] mb-6 tracking-tight drop-shadow-2xl"
                   style={{ fontFamily: 'Georgia, serif' }}
                 >
-                  <span className="block text-gray-900">Discover India's</span>
-                  <span className="block bg-gradient-to-r from-saffron-500 via-rose-500 via-blue-500 to-teal-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                  <span className="block text-white drop-shadow-lg">Discover India's</span>
+                  <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 via-pink-300 to-red-300 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] drop-shadow-lg">
                     Festival Traditions
                   </span>
                 </motion.h1>
@@ -253,7 +280,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-3xl lg:text-4xl text-gray-700 leading-relaxed mb-4 font-medium"
+                  className="text-3xl lg:text-4xl text-yellow-100 leading-relaxed mb-4 font-medium drop-shadow-lg"
                 >
                   हिंदी और मराठी त्योहार
                 </motion.p>
@@ -262,7 +289,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12"
+                  className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-12 drop-shadow-lg"
                 >
                   Experience 47+ authentic festivals with traditional recipes, celebration guides, and rich cultural stories.
                 </motion.p>
@@ -303,7 +330,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 relative z-30"
               >
                 {featuredFestivals.map((festival: any, index: number) => (
                   <InteractiveCard key={festival.id} festival={festival} index={index} />

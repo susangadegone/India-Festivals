@@ -2,11 +2,12 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Search, Filter, Heart, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Search, Filter, Heart, X, RefreshCw, Wifi, WifiOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import FestivalDetail from './FestivalDetail'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
+import { getFestivalsByMonth, checkAPIHealth, type IndianFestival } from '@/lib/indian-festivals-api'
 import type { Country } from '@/lib/countries'
 
 interface Festival {
@@ -44,11 +45,104 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
   const [filterCategory, setFilterCategory] = useState<string>('all')
   const [filterRegion, setFilterRegion] = useState<string>('all')
   const [showFilters, setShowFilters] = useState(false)
+  
+  // Indian Festivals API integration
+  const [useAPIFestivals, setUseAPIFestivals] = useState(false)
+  const [apiFestivals, setApiFestivals] = useState<IndianFestival[]>([])
+  const [apiLoading, setApiLoading] = useState(false)
+  const [apiConnected, setApiConnected] = useState<boolean | null>(null)
 
   // Load festivals based on selected country
-  const festivals = useMemo(() => {
+  const staticFestivals = useMemo(() => {
     return comprehensiveFestivalsData as Festival[]
   }, [country])
+
+  // Check API health on mount and when toggling
+  useEffect(() => {
+    checkAPIHealth().then(setApiConnected)
+  }, [])
+
+  // Fetch API festivals when enabled and date changes
+  useEffect(() => {
+    if (useAPIFestivals && apiConnected) {
+      const fetchAPIFestivals = async () => {
+        setApiLoading(true)
+        try {
+          const year = currentDate.getFullYear()
+          const month = currentDate.getMonth() + 1
+          const data = await getFestivalsByMonth(year, month)
+          setApiFestivals(data)
+        } catch (error) {
+          console.error('Failed to fetch API festivals:', error)
+          setApiFestivals([])
+        } finally {
+          setApiLoading(false)
+        }
+      }
+      fetchAPIFestivals()
+    }
+  }, [useAPIFestivals, apiConnected, currentDate])
+
+  // Merge static and API festivals
+  const festivals = useMemo(() => {
+    if (!useAPIFestivals || !apiConnected) {
+      return staticFestivals
+    }
+
+    // Convert API festivals to match Festival interface
+    const apiFestivalsConverted: Festival[] = apiFestivals.map((apiFest, idx) => {
+      // Try to find matching festival in static data
+      const matchingStatic = staticFestivals.find(
+        f => f.name.toLowerCase() === apiFest.name.toLowerCase()
+      )
+
+      // Use static data if available, otherwise create new entry
+      if (matchingStatic) {
+        // Update date from API
+        return {
+          ...matchingStatic,
+          date: apiFest.full_date || apiFest.date,
+        }
+      }
+
+      // Create new festival entry from API data
+      return {
+        id: `api-${apiFest.name.toLowerCase().replace(/\s+/g, '-')}-${idx}`,
+        name: apiFest.name,
+        nameDevanagari: apiFest.name,
+        date: apiFest.full_date || `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${apiFest.date.padStart(2, '0')}`,
+        region: 'Pan-Indian' as const,
+        category: 'religious',
+        color: '#E17735',
+        tagline: `Celebrated on ${apiFest.day}`,
+        heroImage: 'https://images.unsplash.com/photo-1608848941953-37c9933a94a8?w=800&h=600&fit=crop&q=85&auto=format',
+        overview: { brief: `Indian festival celebrated on ${apiFest.day}` },
+        howToCelebrate: [],
+        recipes: [],
+        decorations: [],
+        shoppingList: {},
+        date_type: 'Lunar' as const,
+        importance: 'Medium' as const,
+      }
+    })
+
+    // Merge: prioritize static festivals, add API-only festivals
+    const staticMap = new Map(staticFestivals.map(f => [f.id, f]))
+    const merged: Festival[] = [...staticFestivals]
+
+    apiFestivalsConverted.forEach(apiFest => {
+      // Only add if not already in static data (or update date)
+      const existing = staticFestivals.find(
+        f => f.name.toLowerCase() === apiFest.name.toLowerCase() &&
+        new Date(f.date).getMonth() === new Date(apiFest.date).getMonth()
+      )
+      if (!existing) {
+        merged.push(apiFest)
+      }
+    })
+
+    return merged.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  }, [staticFestivals, apiFestivals, useAPIFestivals, apiConnected, currentDate])
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -250,6 +344,47 @@ export default function EnhancedCalendarView({ country = 'india' }: EnhancedCale
             >
               <X className="w-5 h-5" />
             </button>
+          )}
+        </div>
+
+        {/* API Toggle */}
+        <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+          <div className="flex items-center gap-2">
+            {apiConnected ? (
+              <Wifi className="w-5 h-5 text-green-600" />
+            ) : (
+              <WifiOff className="w-5 h-5 text-gray-400" />
+            )}
+            <span className="text-sm font-semibold text-gray-700">
+              Live Festival Data
+            </span>
+          </div>
+          <button
+            onClick={() => setUseAPIFestivals(!useAPIFestivals)}
+            disabled={apiConnected === false}
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              useAPIFestivals && apiConnected
+                ? 'bg-green-500 text-white shadow-md'
+                : apiConnected === false
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-green-400'
+            }`}
+          >
+            {apiLoading ? (
+              <span className="flex items-center gap-2">
+                <RefreshCw className="w-4 h-4 animate-spin" />
+                Loading...
+              </span>
+            ) : useAPIFestivals ? (
+              'Enabled'
+            ) : (
+              'Enable'
+            )}
+          </button>
+          {apiConnected === false && (
+            <span className="text-xs text-red-600 ml-2">
+              API not available. Start backend server.
+            </span>
           )}
         </div>
 

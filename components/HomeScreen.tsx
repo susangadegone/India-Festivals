@@ -76,8 +76,43 @@ export default function HomeScreen({ onFestivalClick }: { onFestivalClick?: (fes
     )
   }
 
+  // Check if it's December (festive season)
+  const isDecember = today.getMonth() === 11
+  const isChristmasWeek = isDecember && today.getDate() >= 20
+  const isNewYearWeek = today.getMonth() === 0 && today.getDate() <= 7
+
   return (
-    <div className="space-y-6 pb-6">
+    <div className="space-y-6 pb-6 relative">
+      {/* Festive Banner for December */}
+      {isDecember && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-r from-red-500 via-green-500 to-red-500 text-white p-4 rounded-2xl shadow-lg mb-4 relative overflow-hidden"
+        >
+          <div className="flex items-center justify-center gap-3 relative z-10">
+            <span className="text-2xl">🎄</span>
+            <div className="text-center">
+              <h3 className="font-bold text-lg">Festive Season Blessings!</h3>
+              <p className="text-sm opacity-90">May this season bring you joy, peace, and prosperity 🙏</p>
+            </div>
+            <span className="text-2xl">🪔</span>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-20">
+            {[...Array(10)].map((_, i) => (
+              <motion.span
+                key={i}
+                animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                className="text-3xl"
+              >
+                ✨
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
       {/* Greeting and Date */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -85,7 +120,7 @@ export default function HomeScreen({ onFestivalClick }: { onFestivalClick?: (fes
         className="space-y-2"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          {greeting} 🙏
+          {greeting} 🙏 {isDecember && '🎄'} {isNewYearWeek && '🎉'}
         </h1>
         <p className="text-lg text-gray-600">
           Today is: {formatDate(today)}
