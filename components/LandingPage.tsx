@@ -14,11 +14,20 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
   const [isExiting, setIsExiting] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMounted, setIsMounted] = useState(false)
+  const [videoError, setVideoError] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   // Only render video on client side to avoid hydration issues
   useEffect(() => {
     setIsMounted(true)
+    // Try to play video after mount
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.log('Video autoplay prevented:', err)
+        setVideoError(true)
+      })
+    }
   }, [])
 
   const handleEnter = () => {
@@ -166,9 +175,10 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           onMouseMove={handleMouseMove}
         >
           {/* Video Background - Only render on client to avoid hydration errors */}
-          {isMounted && (
+          {isMounted && !videoError && (
             <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
               <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
@@ -185,28 +195,37 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                 }}
                 onError={(e) => {
                   console.error('Video error:', e)
+                  setVideoError(true)
                 }}
                 onLoadedData={() => {
                   console.log('Video loaded successfully!')
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(console.error)
+                  }
+                }}
+                onCanPlay={() => {
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(console.error)
+                  }
                 }}
               >
-                {/* Puja video with candles and offerings (primary) */}
-                <source
-                  src="/Hindu-Marati-Festivals-App-1/videos/puja-candles-offerings.mp4"
-                  type="video/mp4"
-                />
+                {/* Puja video with candles and offerings (primary) - try .mov first since that's what we have */}
                 <source
                   src="/Hindu-Marati-Festivals-App-1/videos/puja-candles-offerings.mov"
                   type="video/quicktime"
                 />
-                {/* Fallback videos */}
                 <source
-                  src="/Hindu-Marati-Festivals-App-1/videos/india-background.mp4"
+                  src="/Hindu-Marati-Festivals-App-1/videos/puja-candles-offerings.mp4"
                   type="video/mp4"
                 />
+                {/* Fallback videos */}
                 <source
                   src="/Hindu-Marati-Festivals-App-1/videos/4391103-hd_1920_1080_25fps.mov"
                   type="video/quicktime"
+                />
+                <source
+                  src="/Hindu-Marati-Festivals-App-1/videos/india-background.mp4"
+                  type="video/mp4"
                 />
                 <source
                   src="/Hindu-Marati-Festivals-App-1/videos/india-background.mov"
