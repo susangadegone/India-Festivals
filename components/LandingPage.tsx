@@ -190,17 +190,24 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   console.log('Video loaded successfully!')
                 }}
               >
-                {/* Try MP4 first (best browser support) */}
+                {/* Puja video with candles and offerings (primary) */}
+                <source
+                  src="/videos/puja-candles-offerings.mp4"
+                  type="video/mp4"
+                />
+                <source
+                  src="/videos/puja-candles-offerings.mov"
+                  type="video/quicktime"
+                />
+                {/* Fallback videos */}
                 <source
                   src="/videos/india-background.mp4"
                   type="video/mp4"
                 />
-                {/* Your actual video file (.mov) */}
                 <source
                   src="/videos/4391103-hd_1920_1080_25fps.mov"
                   type="video/quicktime"
                 />
-                {/* Alternative name */}
                 <source
                   src="/videos/india-background.mov"
                   type="video/quicktime"
