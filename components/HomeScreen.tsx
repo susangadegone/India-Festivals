@@ -204,6 +204,8 @@ export default function HomeScreen({ onFestivalClick }: { onFestivalClick?: (fes
                       src={festival.heroImage}
                       alt={festival.name}
                       className="w-full h-full object-cover"
+                      crossOrigin="anonymous"
+                      loading="lazy"
                     />
                   </div>
                   <CardContent className="p-4 md:p-6 flex-1 flex flex-col justify-center">

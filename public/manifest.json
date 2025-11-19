@@ -9,22 +9,16 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/Hindu-Marati-Festivals-App-1/icon-192.png",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23f2730a' rx='100'/%3E%3Ctext x='256' y='300' font-size='200' text-anchor='middle'%3E📅%3C/text%3E%3C/svg%3E",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/Hindu-Marati-Festivals-App-1/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
       "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23f2730a' rx='100'/%3E%3Ctext x='256' y='300' font-size='200' text-anchor='middle'%3E📅%3C/text%3E%3C/svg%3E",
       "sizes": "512x512",
       "type": "image/svg+xml",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ],
   "categories": ["lifestyle", "culture", "reference"],
@@ -35,7 +29,7 @@
       "short_name": "Calendar",
       "description": "View festival calendar",
       "url": "/Hindu-Marati-Festivals-App-1/#calendar",
-      "icons": [{ "src": "/Hindu-Marati-Festivals-App-1/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23f2730a' rx='100'/%3E%3Ctext x='256' y='300' font-size='200' text-anchor='middle'%3E📅%3C/text%3E%3C/svg%3E", "sizes": "192x192" }]
     }
   ]
 }

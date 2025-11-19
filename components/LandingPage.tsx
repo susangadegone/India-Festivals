@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Calendar, Sparkles, Heart, BookOpen, ArrowRight, Globe, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import comprehensiveFestivalsData from '@/data/comprehensive-festivals.json'
@@ -13,7 +13,13 @@ interface LandingPageProps {
 export default function LandingPage({ onEnter }: LandingPageProps) {
   const [isExiting, setIsExiting] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMounted, setIsMounted] = useState(false)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  // Only render video on client side to avoid hydration issues
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleEnter = () => {
     setIsExiting(true)
@@ -82,6 +88,8 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.15 }}
             transition={{ duration: 0.6 }}
+            crossOrigin="anonymous"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           
@@ -157,37 +165,57 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           className="min-h-screen bg-white relative overflow-hidden"
           onMouseMove={handleMouseMove}
         >
-          {/* India Video Background */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectFit: 'cover' }}
-            >
-              <source
-                src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4"
-                type="video/mp4"
-              />
-              {/* Fallback video options */}
-              <source
-                src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_25fps.mp4"
-                type="video/mp4"
-              />
-              {/* Fallback image if video doesn't load */}
-              <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50" />
-            </video>
-            {/* Video overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-saffron-900/30 via-transparent to-rose-900/30 z-10" />
-          </div>
+          {/* Video Background - Only render on client to avoid hydration errors */}
+          {isMounted && (
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ 
+                  objectFit: 'cover',
+                  minWidth: '100%',
+                  minHeight: '100%',
+                  width: '100%',
+                  height: '100%',
+                  zIndex: 1
+                }}
+                onError={(e) => {
+                  console.error('Video error:', e)
+                }}
+                onLoadedData={() => {
+                  console.log('Video loaded successfully!')
+                }}
+              >
+                {/* Try MP4 first (best browser support) */}
+                <source
+                  src="/videos/india-background.mp4"
+                  type="video/mp4"
+                />
+                {/* Your actual video file (.mov) */}
+                <source
+                  src="/videos/4391103-hd_1920_1080_25fps.mov"
+                  type="video/quicktime"
+                />
+                {/* Alternative name */}
+                <source
+                  src="/videos/india-background.mov"
+                  type="video/quicktime"
+                />
+              </video>
+              {/* Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-saffron-900/20 via-transparent to-rose-900/20 z-10" />
+            </div>
+          )}
 
-          {/* Animated gradient background (as fallback/overlay) */}
-          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/20 via-rose-50/15 via-blue-50/15 to-teal-50/20 z-20 pointer-events-none" />
+          {/* Animated gradient background (as fallback - behind video) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/50 via-rose-50/40 via-blue-50/40 to-teal-50/50 z-0" />
           
-          {/* Floating gradient orbs (lighter for video background) */}
+          {/* Floating gradient orbs */}
           <motion.div
             animate={{
               x: [0, 100, 0],
@@ -195,7 +223,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               scale: [1, 1.2, 1],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-saffron-300/20 to-rose-300/20 rounded-full blur-3xl z-20"
+            className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-saffron-300/30 to-rose-300/30 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -204,7 +232,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
               scale: [1, 1.3, 1],
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-blue-300/20 to-teal-300/20 rounded-full blur-3xl z-20"
+            className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-blue-300/30 to-teal-300/30 rounded-full blur-3xl"
           />
 
           {/* Header Navigation */}

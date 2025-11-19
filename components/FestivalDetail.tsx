@@ -127,6 +127,8 @@ export default function FestivalDetail({ festival, onClose, isFavorite = false, 
               src={festival.heroImage} 
               alt={festival.name}
               className="w-full h-full object-cover"
+              crossOrigin="anonymous"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             

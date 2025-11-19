@@ -98,6 +98,8 @@ export default function FavoritesView({ favorites, onToggleFavorite, country = '
                   src={festival.heroImage} 
                   alt={festival.name}
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  crossOrigin="anonymous"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div className="absolute top-3 right-3">
