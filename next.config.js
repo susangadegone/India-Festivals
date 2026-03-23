@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+// GitHub Pages: https://<user>.github.io/<repo>/ → basePath = /repo-name
+// Empty basePath in dev so http://localhost:3000/ works without a subpath.
+const basePath =
+  process.env.NODE_ENV === 'development' ? '' : '/India-Festivals'
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -17,11 +22,11 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  basePath: '/Hindu-Marati-Festivals-App-1',
-  assetPrefix: '/Hindu-Marati-Festivals-App-1',
+  basePath,
+  assetPrefix: basePath,
   env: {
-    NEXT_PUBLIC_BASE_PATH: '/Hindu-Marati-Festivals-App-1'
-  }
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 }
 
 module.exports = nextConfig
