@@ -338,15 +338,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] mb-6 tracking-tight drop-shadow-2xl"
                   style={{ fontFamily: 'Georgia, serif' }}
                 >
-                  <span
-                    className={
-                      videoError
-                        ? 'block text-slate-900 drop-shadow-none'
-                        : 'block text-white drop-shadow-lg'
-                    }
-                  >
-                    Discover India's
-                  </span>
+                  <span className="block text-slate-900 drop-shadow-lg">Discover India's</span>
                   <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 via-pink-300 to-red-300 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] drop-shadow-lg">
                     Festival Traditions
                   </span>
@@ -365,11 +357,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className={
-                    videoError
-                      ? 'text-xl lg:text-2xl text-slate-800 leading-relaxed max-w-3xl mx-auto mb-12'
-                      : 'text-xl lg:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-12 drop-shadow-lg'
-                  }
+                  className="text-xl lg:text-2xl text-slate-800 leading-relaxed max-w-3xl mx-auto mb-12"
                 >
                   Experience 47+ authentic festivals with traditional recipes, celebration guides, and rich cultural stories.
                 </motion.p>
