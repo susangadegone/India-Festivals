@@ -347,19 +347,10 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-3xl lg:text-4xl text-yellow-100 leading-relaxed mb-4 font-medium drop-shadow-lg"
-                >
-                  हिंदी और मराठी त्योहार
-                </motion.p>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                   className="text-xl lg:text-2xl text-slate-800 leading-relaxed max-w-3xl mx-auto mb-12"
                 >
-                  Experience 47+ authentic festivals with traditional recipes, celebration guides, and rich cultural stories.
+                  Explore 47+ authentic festivals with time-tested recipes, celebration guides, and the stories behind each tradition.
                 </motion.p>
 
                 {/* CTA Buttons */}
